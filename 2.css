@@ -1,0 +1,15 @@
+h1 {
+    width: 400px;
+    margin-left: 600px;
+    font-family: georgia;
+    color: chartreuse;
+}
+li {
+   font-size: 100;
+   font-family: georgia; 
+}
+b.o {
+font-size: 200px;
+color: chocolate;
+
+}
