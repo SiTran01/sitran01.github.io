@@ -91,7 +91,7 @@ body::after {
 }
 #square h1 {
     font-family: 'Lexend', sans-serif;
-    font-size: 48px;
+    font-size: 46px;
     margin: 22px 0;
     font-weight: normal;
     animation: slideInLeft 0.8s ease-out forwards;
