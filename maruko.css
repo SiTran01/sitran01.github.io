@@ -1,0 +1,453 @@
+ /* Thiết lập nền với hiệu ứng mờ dần */
+        @keyframes backgroundFadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+        
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        body {
+            font-size: 15pt;
+            font-family: 'Inter', sans-serif;
+            line-height: 1.0;
+            position: relative;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+
+        /* Hình nền với hiệu ứng mờ dần */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://64.media.tumblr.com/7d0dcf359eff569875c0580921c9e3a4/5e220a04ff1be564-3b/s1280x1920/1f5583677898cb4e68642a9092685c911db45ec1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -1;
+            animation: backgroundFadeIn 3.0s ease-out forwards;
+        }
+
+        /* Lớp phủ gradient */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(79% 150% at 29% 100%, rgba(135,92,161,0.788) 21%, rgba(66,95,199,0.69) 68%, rgba(0,148,255,0.541) 100%);
+            z-index: -1;
+        }
+
+        /* Wrapper chính chứa nội dung */
+        #wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100%;
+            padding: 20px;
+        }
+
+        #main {
+            max-width: 100%;
+            text-align: left;
+            flex-grow: 1;
+        }
+
+        /* Hiệu ứng slide-in từ trái sang phải */
+        @keyframes slideInRight {
+            0% {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        /* Hiệu ứng slide-in từ phải sang trái */
+		@keyframes slideInLeft {
+    		0% {
+        		transform: translateX(20px);  /* Bắt đầu từ bên phải */
+        		opacity: 0;
+    		}
+    		100% {
+        		transform: translateX(0);     /* Di chuyển đến vị trí ban đầu */
+        		opacity: 1;
+    		}
+		}
+
+        /* Khung chính */
+        #square {
+            width: 100%;
+            max-width: 425px;
+            background-color: #393844;
+            border-radius: 26px;
+            margin: 45px 0;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: flex-start;
+            text-align: left;
+            padding: 50px 40px 30px 40px;
+            box-sizing: border-box;
+            animation: slideInRight 1.5s ease-out forwards;
+            
+            
+        }
+
+        /* Avatar */
+        #square img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+			
+        }
+
+        /* Tiêu đề */
+        #square h1 {
+            font-family: 'Lexend', sans-serif;
+            font-size: 48px;
+            margin: 22px 0;
+            font-weight: normal;
+            animation: slideInLeft 0.8s ease-out forwards; 
+            opacity: 0;
+        }
+
+        /* Giới thiệu */
+        #square p {
+            font-size: 16px;
+            margin-bottom: 21px;
+            color: #a1a1a7;
+            line-height: 20px;
+            animation: slideInRight 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Section */
+        .section {
+            width: 100%;
+            padding: 0;
+            text-align: left;
+        }
+
+        /* Dấu gạch ngang divider */
+        .separator {
+            position: relative;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .separator::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -20px;
+            right: -20px;
+            border-top: 3px solid rgba(65, 61, 79, 1);
+        }
+
+        /* Các nút */
+        @keyframes zoomOutFadeIn {
+            0% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+
+/* ------------------------------SECTION 2 ---------------------------- */
+		
+        
+        /* Thiết lập kiểu bố cục flex cho danh sách các nút, căn giữa và tạo khoảng cách giữa các phần tử */
+        .buttons-section2 {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+        
+		/* Định dạng nút với flex, màu sắc, viền và hiệu ứng chuyển đổi */
+        .button {
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 17px 25px;
+            border: 2px solid #7e8bff;
+            border-radius: 11px;
+            background-color: transparent;
+            transition: background-color 0.3s, transform 0.4s;
+            justify-content: flex-start;
+        }
+
+        .button:hover {
+            background-color: transparent;
+            transform: scale(1.1);
+        }
+        /*TEXT buttons*/
+        .label {
+            font-size: 15px;
+            margin-left: 15px; 
+            color: #ffffff;
+        }
+		/*Icon buttons*/
+        .button i {
+            color: #7e8bff;
+            font-size: 18px;
+        }
+        
+        /* ------hiệu ứng cho button section 2------- */
+        .buttons-section2 li {
+            margin: 0;
+            animation: zoomOutFadeIn 1.0s ease-out forwards; 
+            opacity: 0; 
+        }
+        
+        .buttons-section2 li:nth-child(1) {
+            animation-delay: 0.3s; 
+        }
+
+        .buttons-section2 li:nth-child(2) {
+            animation-delay: 0.5s; 
+        }
+
+        .buttons-section2 li:nth-child(3) {
+            animation-delay: 0.7s; 
+        }
+        
+        .buttons-section2 li:nth-child(4) {
+            animation-delay: 0.9s; 
+        }
+        
+        .buttons-section2 li:nth-child(5) {
+            animation-delay: 1.1s; 
+        }
+        .buttons-section2 li:nth-child(6) {
+            animation-delay: 1.3s; 
+        }
+		
+        
+/* --------------------------------SECTION 3 ------------------------------ */
+
+
+        /* Thiết lập kiểu bố cục flex cho danh sách các nút, căn giữa và tạo khoảng cách giữa các phần tử */
+        .buttons-section3 {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            justify-content: center;
+        }
+        
+ 		/* Định dạng nút hình tròn với viền, màu sắc và hiệu ứng chuyển đổi */
+        .icon-button {
+            position: relative;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 2px solid #7e8bff  ; /* màu viền */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            color: #7e8bff  ;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        /* SIZE ICON */
+        #section3 .icon-button i {
+            font-size: 24px;
+        }
+
+        .icon-button:hover {
+            background-color: transparent;
+            transform: scale(1.3);
+            transition: transform 0.6s;
+        }
+		
+        /* Lable */
+        .icon-button .label {
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #000000;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+		/* Lable  HOVER */
+        .icon-button:hover .label {
+        	transition-delay: 0.8s;
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* ------hiệu ứng cho button section 3----- */
+        .buttons-section3 li {
+            margin: 0;
+            animation: zoomOutFadeIn 1.0s ease-out forwards; 
+            opacity: 0; 
+        }
+        
+        .buttons-section3 li:nth-child(1) {
+            animation-delay: 1.05s; 
+        }
+
+        .buttons-section3 li:nth-child(2) {
+            animation-delay: 1.20s; 
+        }
+
+        .buttons-section3 li:nth-child(3) {
+            animation-delay: 1.35s; 
+        }
+        
+        .buttons-section3 li:nth-child(4) {
+            animation-delay: 1.50s; 
+        }
+        
+        .buttons-section3 li:nth-child(5) {
+            animation-delay: 1.65s; 
+        }
+        .buttons-section3 li:nth-child(6) {
+            animation-delay: 1.80s; 
+        }
+        
+        
+/*------------------------------------Media Queries------------------------------*/ 
+
+
+
+        /* TABLETS DEVICES */
+        @media only screen and (min-width: 668px) and (max-width: 991px) {
+            #square {
+            	margin-top: 0px;
+                padding: 40px 40px 20px 40px;
+
+            }
+            
+            #square img {
+              	width: 80px;
+            	height: 80px;
+            	
+   
+                margin: 0 auto;
+            }
+
+            #square h1 {
+                font-size: 42px;
+                text-align: center;
+            }
+
+            #square p {
+                font-size: 15px;
+                text-align: center;
+            }
+
+            .button {
+                padding: 15px 22px;
+            }
+            
+            .button i {
+            color: #7e8bff;
+            font-size: 18px;
+        }
+
+            .icon-button {
+                width: 40px;
+                height: 40px;
+            }
+            
+             #section3 {
+            margin-left: 20px;
+            margin-right: 20px;
+        }
+        }
+
+        /* PHONE DEVICES */
+        @media only screen and (max-width: 667px) {
+            #square {
+            	margin-top: 0px;
+                padding: 40px 35px 20px 35px; 
+
+            }
+            
+            #square img {
+              	width: 80px;
+            	height: 80px;
+            	
+                margin: 0 auto;
+            }
+
+            #square h1 {
+                font-size: 40px;
+                text-align: center;
+            }
+
+            #square p {
+                font-size: 14px;
+                text-align: center;
+            }
+
+            .button {
+                padding: 16px 22px;
+                width: 200px;  /* Chiều rộng cố định */
+        		height: 50px;  /* Chiều cao cố định */
+        		padding: 0;    /* Loại bỏ padding */
+        		display: flex;
+        		justify-content: center;
+        		align-items: center;
+            }
+            
+            .label {
+            
+            margin-left: 25px; 
+            color: #ffffff;
+        }
+		/*Icon button cho section 2*/
+        .button i {
+            color: #7e8bff;
+            font-size: 20px;
+        }
+
+            .icon-button {
+                width: 38px;
+                height: 38px;
+                
+            }
+            
+          
+          #section3 {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+        
+        }
