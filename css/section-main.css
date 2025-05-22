@@ -34,9 +34,9 @@
 }
 #square h1 {
     font-family: 'Lexend', sans-serif;
-    font-size: 46px;
+    font-size: 42px;
     margin: 22px 0;
-    font-weight: normal;
+    font-weight: 100;
     animation: slideInLeft 0.8s ease-out forwards;
     opacity: 0;
 }
