@@ -1,0 +1,42 @@
+.buttons-section2 {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+}
+.button {
+    display: flex;
+    align-items: center;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 17px 25px;
+    border: 2px solid #7e8bff;
+    border-radius: 11px;
+    background-color: transparent;
+    transition: background-color 0.3s, transform 0.4s;
+    justify-content: flex-start;
+}
+.button:hover {
+    background-color: transparent;
+    transform: scale(1.1);
+}
+.label {
+    font-size: 15px;
+    margin-left: 15px;
+    color: #ffffff;
+}
+.button i {
+    color: #7e8bff;
+    font-size: 18px;
+}
+.buttons-section2 li {
+    margin: 0;
+    animation: zoomOutFadeIn 1.0s ease-out forwards;
+    opacity: 0;
+}
+.buttons-section2 li:nth-child(1) { animation-delay: 0.3s; }
+.buttons-section2 li:nth-child(2) { animation-delay: 0.5s; }
+.buttons-section2 li:nth-child(3) { animation-delay: 0.7s; }
+.buttons-section2 li:nth-child(4) { animation-delay: 0.9s; }

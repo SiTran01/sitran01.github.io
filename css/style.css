@@ -1,0 +1,7 @@
+/* style.css */
+@import url('base.css');
+@import url('animations.css');
+@import url('section-main.css');
+@import url('section-buttons.css');
+@import url('section-icons.css');
+@import url('responsive.css');
