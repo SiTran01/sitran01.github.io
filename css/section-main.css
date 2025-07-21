@@ -96,7 +96,7 @@
     left: 50%;
     width: 10px;
     height: 10px;
-    background: rgba(79, 170, 255, 0.4);
+    background: rgba(126, 139, 255, 0.4); /* đã chỉnh */
     border-radius: 50%;
     transform: translate(-50%, -50%);
     animation: pulse-wave 4s ease-out infinite;
