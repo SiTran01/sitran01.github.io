@@ -61,3 +61,28 @@
     right: -20px;
     border-top: 3px solid rgba(65, 61, 79, 1);
 }
+
+.contact-icons-right {
+    position: absolute;
+    top: 55px;
+    right: 40px;
+    display: flex;
+    gap: 16px;
+    z-index: 10;
+    animation: slideInLeft 1.5s ease-out forwards;
+    animation-delay: 0.5s; /* Thời gian trễ 0.5 giây */
+    opacity: 0; /* để animation hoạt động */
+}
+
+.contact-icons-right a {
+    color: #4faaff;
+    font-size: 22px;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+}
+
+.contact-icons-right a:hover {
+    color: #a6f1ff;
+    transform: scale(1.2);
+}
+
