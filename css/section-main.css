@@ -27,7 +27,14 @@
     padding: 50px 40px 30px 40px;
     box-sizing: border-box;
     animation: slideInRight 1.5s ease-out forwards;
-    z-index: 1; /* Đặt trên cùng để không bị che bởi các layer khác */
+    box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+    z-index: 1;
+    transition: box-shadow 0.4s, transform 0.4s, z-index 0.4s;
+}
+#square.square-active {
+    box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18), 0 0 0 4px #7e8bff33;
+    transform: scale(1.03);
+    z-index: 10;
 }
 #square img {
     width: 80px;

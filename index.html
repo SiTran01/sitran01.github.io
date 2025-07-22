@@ -58,7 +58,7 @@
               data-subtitle="Lý do chọn Yến Sào"
               data-features='["Tổ yến sạch 100%", "Không chất bảo quản", "Hỗ trợ sức khoẻ", "Đóng gói cao cấp"]'
             >
-              <i class="fa-solid fa-briefcase"></i>
+              <span class="icon-gradient"><i class="fa-solid fa-briefcase"></i></span>
               <span class="label">Yến Sào</span>
               <span class="border-blue"></span>
               <span class="border-blue-bottom"></span>
@@ -84,9 +84,19 @@
               ]'
             >
               <svg class="notion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
+                <defs>
+                  <linearGradient id="icon-gradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#7e8bff"/>
+                    <stop offset="100%" stop-color="#7e8bff"/>
+                  </linearGradient>
+                  <linearGradient id="icon-gradient-hover" ...>
+                    <stop offset="0%" stop-color="#ff00ff"/>
+                    <stop offset="100%" stop-color="#00ffff"/>
+                  </linearGradient>
+                </defs>
                 <path
                   d="M3.25781 3.11684C3.67771 3.45796 3.83523 3.43193 4.62369 3.37933L12.0571 2.93299C12.2147 2.93299 12.0836 2.77571 12.0311 2.74957L10.7965 1.85711C10.56 1.67347 10.2448 1.46315 9.64083 1.51576L2.44308 2.04074C2.18059 2.06677 2.12815 2.19801 2.2327 2.30322L3.25781 3.11684ZM3.7041 4.84917V12.6704C3.7041 13.0907 3.91415 13.248 4.38693 13.222L12.5562 12.7493C13.0292 12.7233 13.0819 12.4341 13.0819 12.0927V4.32397C13.0819 3.98306 12.9508 3.79921 12.6612 3.82545L4.12422 4.32397C3.80918 4.35044 3.7041 4.50803 3.7041 4.84917ZM11.7688 5.26872C11.8212 5.50518 11.7688 5.74142 11.5319 5.76799L11.1383 5.84641V11.6205C10.7965 11.8042 10.4814 11.9092 10.2188 11.9092C9.79835 11.9092 9.69305 11.7779 9.37812 11.3844L6.80345 7.34249V11.2532L7.61816 11.437C7.61816 11.437 7.61816 11.9092 6.96086 11.9092L5.14879 12.0143C5.09615 11.9092 5.14879 11.647 5.33259 11.5944L5.80546 11.4634V6.29276L5.1489 6.24015C5.09625 6.00369 5.22739 5.66278 5.5954 5.63631L7.53935 5.50528L10.2188 9.5998V5.97765L9.53564 5.89924C9.4832 5.61018 9.69305 5.40028 9.95576 5.37425L11.7688 5.26872ZM1.83874 1.33212L9.32557 0.780787C10.245 0.701932 10.4815 0.754753 11.0594 1.17452L13.4492 2.85424C13.8436 3.14309 13.975 3.22173 13.975 3.53661V12.7493C13.975 13.3266 13.7647 13.6681 13.0293 13.7203L4.33492 14.2454C3.78291 14.2717 3.52019 14.193 3.23111 13.8253L1.47116 11.5419C1.1558 11.1216 1.02466 10.8071 1.02466 10.4392V2.25041C1.02466 1.77825 1.23504 1.38441 1.83874 1.33212Z"
-                  fill="currentColor"
+                  fill="url(#icon-gradient)"
                 />
               </svg>
               <span class="label">Notion</span>
@@ -117,8 +127,18 @@
               data-image="https://upload.wikimedia.org/wikipedia/commons/5/59/Google_Sites_logo.png"
             >
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 88" class="notion-icon">
-                <path d="M 42,22 54.065,24.28 64,22 42,0 38.965,10.43 Z" fill="#354287" />
-                <path d="M 42,22 V 0 H 6 C 2.685,0 0,2.685 0,6 v 76 c 0,3.315 2.685,6 6,6 h 52 c 3.315,0 6,-2.685 6,-6 V 22 Z" fill="#7e8bff" />
+                <defs>
+                  <linearGradient id="icon-gradient" x1="0" y1="0" x2="1" y2="0">
+                    <stop offset="0%" stop-color="#7e8bff"/>
+                    <stop offset="100%" stop-color="#7e8bff"/>
+                  </linearGradient>
+                  <linearGradient id="icon-gradient-hover" ...>
+                    <stop offset="0%" stop-color="#ff00ff"/>
+                    <stop offset="100%" stop-color="#00ffff"/>
+                  </linearGradient>
+                </defs>
+                <path d="M 42,22 54.065,24.28 64,22 42,0 38.965,10.43 Z" fill="#000000" />
+                <path d="M 42,22 V 0 H 6 C 2.685,0 0,2.685 0,6 v 76 c 0,3.315 2.685,6 6,6 h 52 c 3.315,0 6,-2.685 6,-6 V 22 Z" fill="url(#icon-gradient)" />
                 <path d="M 40,61 H 14 V 44 h 26 z m 10,0 H 45 V 44 h 5 z M 50,39 H 14 v -5 h 36 z" fill="#393844" />
               </svg>
               <span class="label">Google Sites</span>
@@ -150,7 +170,7 @@
               data-note="Bên mình tư vấn, thiết kế và thi công hệ thống Smart Home phù hợp từng nhu cầu thực tế, từ nhà ở đến văn phòng, khách sạn,... đảm bảo an toàn và dễ sử dụng ngay cả với người lớn tuổi."
               data-image="https://cdn-icons-png.flaticon.com/512/5785/5785803.png"
             >
-              <i class="fa-solid fa-house-user"></i>
+              <span class="icon-gradient"><i class="fa-solid fa-house-user"></i></span>
               <span class="label">Smart Home</span>
               <span class="border-blue"></span>
               <span class="border-blue-bottom"></span>
@@ -179,7 +199,7 @@
               data-note="Dịch vụ phù hợp với cá nhân kinh doanh online, SMEs hoặc những ai muốn có một hệ thống tự động hỗ trợ mình mọi lúc mọi nơi."
               data-image="https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
             >
-              <i class="fa-solid fa-robot"></i>
+              <span class="icon-gradient"><i class="fa-solid fa-robot"></i></span>
               <span class="label">AI Agent</span>
               <!-- 4 border span -->
               <span class="border-blue"></span>
