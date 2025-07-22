@@ -1,0 +1,70 @@
+#service-description {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 420px;
+  background-color: #393844;
+  border-radius: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(0);
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  z-index: 0; /* giữ thấp, không cần cao hơn */
+  padding: 50px 40px 30px 40px;
+}
+
+
+#service-description.visible-right {
+  opacity: 1;
+  transform: translateX(400px);
+  z-index: 0;
+  padding-left: 60px;
+}
+
+#service-description.visible-left {
+  opacity: 1;
+  transform: translateX(-400px); /* bay ra trái */
+  z-index: 0;
+  
+}
+.service-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.service-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.service-title {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.service-subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 8px 0 4px;
+}
+
+.service-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.service-features {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+  font-size: 13px;
+}
+
+.service-features li {
+  margin-bottom: 4px;
+}
