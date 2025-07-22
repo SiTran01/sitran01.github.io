@@ -70,11 +70,7 @@
     opacity: 0;
 }
 
-.notion-icon {
-  width: 20px;
-  height: 20px;
-  transform: scale(1.4);
-}
+
 .buttons-section3 li:nth-child(1) { animation-delay: 1.05s; }
 .buttons-section3 li:nth-child(2) { animation-delay: 1.20s; }
 .buttons-section3 li:nth-child(3) { animation-delay: 1.35s; }

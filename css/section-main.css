@@ -102,6 +102,8 @@
     animation: pulse-wave 4s ease-out infinite;
     z-index: -1;
     pointer-events: none;
+    will-change: transform, opacity;
+    backface-visibility: hidden;
 }
 
 
