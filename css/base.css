@@ -37,3 +37,19 @@ body::after {
   background: radial-gradient(79% 150% at 29% 100%, rgba(135,92,161,0.788) 21%, rgba(66,95,199,0.69) 68%, rgba(0,148,255,0.541) 100%);
   z-index: -1;
 }
+
+
+/* Làm mờ section */
+.blurred {
+  filter: blur(2px);
+  opacity: 0.5;
+  transition: filter 2.5s ease, opacity 1.0s ease;
+}
+
+/* Nút được chọn vẫn rõ ràng */
+#section2 .button.active {
+  transform: scale(1.1);
+  z-index: 2;
+  position: relative;
+  transition: transform 0.3s ease;
+}

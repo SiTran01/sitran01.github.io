@@ -43,7 +43,7 @@
     .contact-icons-right {
         flex-direction: column;   /* chuyển sang hàng dọc */
         gap: 12px;                /* khoảng cách dọc giữa 2 icon */
-        right: 45px;              /* điều chỉnh lại vị trí bên phải nếu cần */
+        right: 45px;             
         top: 50px;                /* điều chỉnh lại vị trí trên nếu cần */
     }
 
@@ -108,7 +108,7 @@
     .contact-icons-right {
         flex-direction: column;   /* chuyển sang hàng dọc */
         gap: 12px;                /* khoảng cách dọc giữa 2 icon */
-        right: 45px;              /* điều chỉnh lại vị trí bên phải nếu cần */
+        right: 45px;   
         top: 50px;                /* điều chỉnh lại vị trí trên nếu cần */
     }
 }

@@ -5,39 +5,70 @@ export function handleHoverEffects() {
   const buttons = document.querySelectorAll('#section2 .button');
   const descBox = document.getElementById('service-description');
   const square = document.getElementById('square');
+  const section3 = document.getElementById('section3');
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-  let currentHoveredButton = null;
+  let currentClickedButton = null;
   let descTimeout = null;
+  let direction; // 🟢 cần dùng lại khi click ra ngoài
 
   buttons.forEach(button => {
-    let iconTimeout;
-
-    button.addEventListener('mouseenter', () => {
+    button.addEventListener('click', () => {
       if (isMobile) return;
+      if (currentClickedButton === button) return;
 
-      currentHoveredButton = button;
-      square.classList.add('square-active');
+      // 1. Reset button trước đó
+      if (currentClickedButton) {
+        currentClickedButton.classList.remove('active');
+        currentClickedButton.classList.add('button-reverse');
+        setTimeout(() => {
+          currentClickedButton.classList.remove('button-reverse');
+        }, 600);
 
-      const svg = button.querySelector('.notion-icon');
-      if (svg) {
-        iconTimeout = setTimeout(() => {
-          applySVGGradient(svg, 'url(#icon-gradient-hover)');
-        }, 450);
+        // Xóa hiệu ứng mờ
+        buttons.forEach(btn => btn.classList.remove('blurred'));
+        section3.classList.remove('blurred');
+        
       }
 
+      // 2. Gán button hiện tại
+      setTimeout(() => {
+        currentClickedButton = button;
+        button.classList.add('active');
+
+        // Gradient cho icon
+        applySVGGradient(button.querySelector('.notion-icon'), 'url(#icon-gradient-hover)');
+
+        // Làm mờ các button khác
+        buttons.forEach(btn => {
+          if (btn !== button) {
+            btn.classList.add('blurred');
+          } else {
+            btn.classList.remove('blurred');
+          }
+        });
+
+        section3.classList.add('blurred');
+        document.getElementById('section1').classList.add('blurred');
+      }, 500);
+
+      // 3. Reset descBox
+      descBox.classList.remove('visible-left', 'visible-right', 'focus-desc');
+      if (descTimeout) clearTimeout(descTimeout);
+
+      // 4. Tính hướng
       const squareRect = square.getBoundingClientRect();
       const buttonRect = button.getBoundingClientRect();
       const squareCenterX = squareRect.left + squareRect.width / 2;
       const buttonCenterX = buttonRect.left + buttonRect.width / 2;
-      const direction = buttonCenterX < squareCenterX ? 'right' : 'left';
+      direction = buttonCenterX < squareCenterX ? 'right' : 'left';
 
-      descBox.classList.remove('visible-left', 'visible-right');
-      if (descTimeout) clearTimeout(descTimeout);
+      // 5. Square nghiêng
+      square.classList.remove('tilt-left', 'tilt-right');
+      square.classList.add(direction === 'left' ? 'tilt-right' : 'tilt-left');
 
+      // 6. Hiện mô tả
       descTimeout = setTimeout(() => {
-        if (currentHoveredButton !== button) return;
-
         updateDescription(button, descBox);
         descBox.style.top = `${squareRect.top + window.scrollY}px`;
 
@@ -49,33 +80,88 @@ export function handleHoverEffects() {
           descBox.style.left = `${squareRect.right + window.scrollX - descWidth}px`;
           descBox.classList.add('visible-left');
         }
+
+        descBox.style.zIndex = '2';
+
+        // Đợi 1 frame rồi mới add hiệu ứng focus
+        setTimeout(() => {
+          descBox.classList.add('focus-desc');
+        }, 30);
+
+        // Reset nghiêng square sau khi trượt xong
+        setTimeout(() => {
+          square.classList.remove('tilt-left', 'tilt-right');
+        }, 450);
       }, 400);
-
-      button.classList.remove('button-reverse');
-    });
-
-    button.addEventListener('mouseleave', () => {
-      currentHoveredButton = null;
-      square.classList.remove('square-active');
-
-      clearTimeout(iconTimeout);
-      applySVGGradient(button.querySelector('.notion-icon'), 'url(#icon-gradient)');
-
-      descBox.classList.remove('visible-left', 'visible-right');
-
-      const borders = button.querySelectorAll(
-        '.border-blue, .border-blue-bottom, .border-pink, .border-pink-top'
-      );
-      borders.forEach(el => {
-        el.style.animation = 'none';
-        void el.offsetWidth;
-        el.style.animation = '';
-      });
-
-      button.classList.add('button-reverse');
-      setTimeout(() => {
-        button.classList.remove('button-reverse');
-      }, 300);
     });
   });
+
+  // 7. Click ra ngoài để reset toàn bộ
+document.addEventListener('click', (e) => {
+  if (
+    !descBox.contains(e.target) &&
+    ![...buttons].some(btn => btn.contains(e.target))
+  ) {
+    console.log('👉 Clicked outside — resetting UI');
+
+    // 1. Reset nút đang click
+if (currentClickedButton) {
+  currentClickedButton.classList.remove('active');
+  currentClickedButton.classList.add('button-reverse');
+  setTimeout(() => {
+    currentClickedButton.classList.remove('button-reverse');
+  }, 600);
+}
+
+// 2. Square nghiêng đúng hướng cũ
+square.classList.remove('tilt-left', 'tilt-right', 'square-bounce');
+if (direction === 'left') {
+  square.classList.add('tilt-right');
+} else if (direction === 'right') {
+  square.classList.add('tilt-left');
+}
+
+// 3. Square bounce
+setTimeout(() => {
+  square.classList.remove('tilt-left', 'tilt-right');
+  square.classList.add('square-bounce');
+}, 800); // Delay 100ms cho nghiêng nhẹ rồi mới nảy
+
+// 4. Sau khi bounce xong → xử lý desc trượt
+setTimeout(() => {
+  const isLeft = descBox.classList.contains('visible-left');
+  const isRight = descBox.classList.contains('visible-right');
+
+  // Remove hiệu ứng focus
+  descBox.classList.remove('focus-desc');
+
+  // Add class trượt ngược
+  if (isLeft) {
+    descBox.classList.add('exit-left');
+  } else if (isRight) {
+    descBox.classList.add('exit-right');
+  }
+
+  // Hạ z-index chuẩn bị trượt
+  descBox.style.zIndex = '1';
+
+  // Reset hoàn toàn sau 400ms
+  setTimeout(() => {
+    descBox.classList.remove('visible-left', 'visible-right', 'exit-right', 'exit-left');
+    descBox.style.left = '';
+    descBox.style.top = '';
+  }, 400);
+}, 400); // ⏱ 300ms bounce + 100ms buffer
+
+// 5. Gỡ blur
+section3.classList.remove('blurred');
+document.getElementById('section1').classList.remove('blurred');
+buttons.forEach(btn => btn.classList.remove('blurred'));
+
+// 6. Clear current button
+currentClickedButton = null;
+  }
+});
+
+
 }
