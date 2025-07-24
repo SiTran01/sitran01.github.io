@@ -7,7 +7,7 @@ export function handleClickEffects() {
   const square = document.getElementById('square');
   const section3 = document.getElementById('section3');
   const section1 = document.getElementById('section1');
-  const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
 
   let currentClickedButton = null;
   let descTimeout = null;
@@ -142,7 +142,7 @@ export function handleClickEffects() {
       else if (isRight) descBox.classList.add('exit-right');
     }
 
-    descBox.style.zIndex = '1';
+    descBox.style.zIndex = '0';
 
     setTimeout(() => {
       descBox.classList.remove(
