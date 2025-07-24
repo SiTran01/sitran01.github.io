@@ -48,6 +48,34 @@
         right: 45px;             
         top: 50px;                /* điều chỉnh lại vị trí trên nếu cần */
     }
+    #service-description {
+    width: 90%;
+    max-width: none;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30px 20px 20px 20px;
+    border-radius: 16px;
+  }
+
+  #service-description .desc-img {
+    width: 100px;
+  }
+
+  #service-description .desc-title {
+    font-size: 18px;
+  }
+
+  #service-description .desc-subtitle {
+    font-size: 13px;
+  }
+
+  #service-description .desc-desc {
+    font-size: 13px;
+  }
+
+  #service-description .desc-features {
+    font-size: 12.5px;
+  }
 
 }
 @media only screen and (max-width: 767px) {
@@ -113,4 +141,33 @@
         right: 45px;   
         top: 50px;                /* điều chỉnh lại vị trí trên nếu cần */
     }
+
+    #service-description {
+    width: 90%;
+    max-width: none;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 30px 20px 20px 20px;
+    border-radius: 16px;
+  }
+
+  #service-description .desc-img {
+    width: 100px;
+  }
+
+  #service-description .desc-title {
+    font-size: 18px;
+  }
+
+  #service-description .desc-subtitle {
+    font-size: 13px;
+  }
+
+  #service-description .desc-desc {
+    font-size: 13px;
+  }
+
+  #service-description .desc-features {
+    font-size: 12.5px;
+  }
 }
