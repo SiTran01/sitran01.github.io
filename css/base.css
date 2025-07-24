@@ -63,6 +63,18 @@ body::after {
   background-color: #393844;
   pointer-events: auto;
   opacity: 1;
-  transform: scale(1.2); /* ✅ cú pháp đúng */
-  transition: transform 0.3s ease;
+  transform: scale(1.25); /* ✅ cú pháp đúng */
+  transition: transform 1.2s ease;
 }
+
+
+@keyframes gradientText {
+  to {
+    background-image: linear-gradient(270deg, #00ffff, #ff00ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+}
+

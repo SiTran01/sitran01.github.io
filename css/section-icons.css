@@ -1,3 +1,10 @@
+#section3 {
+            margin-left: 20px;
+            margin-right: 20px;
+            transition: opacity 0.8s ease;
+}
+
+
 .icon-section-center {
     display: flex;
     justify-content: center;
@@ -35,10 +42,6 @@
     font-size: 24px;
 }
 
-#section3 {
-            margin-left: 20px;
-            margin-right: 20px;
-}
 
 .icon-button:hover {
     background-color: transparent;
