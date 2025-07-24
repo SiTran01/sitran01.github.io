@@ -106,76 +106,78 @@ export function handleClickEffects() {
 
   // Reset toàn bộ khi click ra ngoài
   document.addEventListener('click', (e) => {
-    if (
-      !descBox.contains(e.target) &&
-      ![...buttons].some(btn => btn.contains(e.target))
-    ) {
-      if (!currentClickedButton) return;
+  if (
+    !descBox.contains(e.target) &&
+    ![...buttons].some(btn => btn.contains(e.target))
+  ) {
+    if (!currentClickedButton) return;
 
-      console.log('👉 Clicked outside — resetting UI');
+    console.log('👉 Clicked outside — resetting UI');
 
-      // Reset button
-      currentClickedButton.classList.remove('active');
-      const icon = currentClickedButton.querySelector('.icon-gradient');
-      if (icon) icon.style.animation = '';
-      applySVGGradient(currentClickedButton.querySelector('.notion-icon'), 'url(#icon-gradient)');
-      currentClickedButton.classList.add('button-reverse');
+    // Reset button
+    currentClickedButton.classList.remove('active');
+    const icon = currentClickedButton.querySelector('.icon-gradient');
+    if (icon) icon.style.animation = '';
+    applySVGGradient(currentClickedButton.querySelector('.notion-icon'), 'url(#icon-gradient)');
+    currentClickedButton.classList.add('button-reverse');
+    setTimeout(() => {
+      currentClickedButton.classList.remove('button-reverse');
+    }, 600);
+
+    // Trượt mô tả (chạy TRƯỚC square bounce)
+    const isLeft = descBox.classList.contains('visible-left');
+    const isRight = descBox.classList.contains('visible-right');
+    const isOverlap = descBox.classList.contains('desc-overlap');
+    descBox.classList.remove('focus-desc');
+
+    if (isOverlap) {
+      descBox.classList.add('exit-fade');
+
+      // 🔥 Xóa exit-fade sau 400ms
       setTimeout(() => {
-        currentClickedButton.classList.remove('button-reverse');
-      }, 600);
-
-      // Square nghiêng và bounce
-      square.classList.remove('tilt-left', 'tilt-right', 'square-bounce');
-      if (direction === 'left') {
-        square.classList.add('tilt-right');
-      } else if (direction === 'right') {
-        square.classList.add('tilt-left');
-      }
-
-      setTimeout(() => {
-        square.classList.remove('tilt-left', 'tilt-right');
-        square.classList.add('square-bounce');
-      }, 800);
-
-      // Trượt mô tả
-      setTimeout(() => {
-        const isLeft = descBox.classList.contains('visible-left');
-        const isRight = descBox.classList.contains('visible-right');
-        const isOverlap = descBox.classList.contains('desc-overlap'); // 👈 Thêm dòng này nếu chưa có
-        descBox.classList.remove('focus-desc');
-
-        
-        if (isOverlap) {
-    descBox.classList.add('exit-fade');
-  } else {
-    if (isLeft) {
-      descBox.classList.add('exit-left');
-    } else if (isRight) {
-      descBox.classList.add('exit-right');
-    }
-  }
-        
-
-        descBox.style.zIndex = '1';
-
-        setTimeout(() => {
-          descBox.classList.remove(
-            'visible-left', 'visible-right',
-            'desc-overlap',
-            'exit-left', 'exit-right', 'exit-fade'
-          );
-          descBox.style.left = '';
-          descBox.style.top = '';
-        }, 400);
+        descBox.classList.remove('exit-fade');
       }, 400);
 
-      // Gỡ mờ
-      square.classList.remove('square-disabled');
-      section3.classList.remove('disabled');
-      section1.classList.remove('disabled');
-      buttons.forEach(btn => btn.classList.remove('disabled'));
-
-      currentClickedButton = null;
+    } else {
+      if (isLeft) {
+        descBox.classList.add('exit-left');
+      } else if (isRight) {
+        descBox.classList.add('exit-right');
+      }
     }
-  });
+
+    descBox.style.zIndex = '1';
+
+    setTimeout(() => {
+      descBox.classList.remove(
+        'visible-left', 'visible-right',
+        'desc-overlap',
+        'exit-left', 'exit-right'
+      );
+      descBox.style.left = '';
+      descBox.style.top = '';
+    }, 400);
+
+    // Square nghiêng và bounce (sau phần mô tả)
+    square.classList.remove('tilt-left', 'tilt-right', 'square-bounce');
+    if (direction === 'left') {
+      square.classList.add('tilt-right');
+    } else if (direction === 'right') {
+      square.classList.add('tilt-left');
+    }
+
+    setTimeout(() => {
+      square.classList.remove('tilt-left', 'tilt-right');
+      square.classList.add('square-bounce');
+    }, 800);
+
+    // Gỡ mờ
+    square.classList.remove('square-disabled');
+    section3.classList.remove('disabled');
+    section1.classList.remove('disabled');
+    buttons.forEach(btn => btn.classList.remove('disabled'));
+
+    currentClickedButton = null;
+  }
+});
 }
