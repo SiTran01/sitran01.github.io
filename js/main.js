@@ -6,4 +6,6 @@ import { animateSquareOnLoad } from './square_entry_animation.js'; // thêm dòn
 initEmailLink();
 handleClickEffects();
 handleHoverEffects();
-animateSquareOnLoad(); // gọi luôn tại đây
+window.addEventListener('DOMContentLoaded', () => {
+  animateSquareOnLoad();
+});

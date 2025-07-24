@@ -62,7 +62,7 @@ export function handleClickEffects() {
         section3.classList.add('disabled');
         square.classList.add('square-disabled');
         document.getElementById('section1').classList.add('disabled');
-      }, 800);
+      }, 1000);
 
       // 3. Reset descBox
       descBox.classList.remove('visible-left', 'visible-right', 'focus-desc');
