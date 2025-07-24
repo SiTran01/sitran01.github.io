@@ -38,6 +38,9 @@
 /* Khi được click */
 /* === Square Box (default state) === */
 /* === Square Box (default state) === */
+#square.square-disabled {
+  background-color: rgba(57, 56, 68, 0.5); /* giống màu gốc nhưng mờ đi */
+}
 #square {
   width: 100%;
   max-width: 425px;

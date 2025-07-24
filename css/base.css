@@ -40,16 +40,29 @@ body::after {
 
 
 /* Làm mờ section */
-.blurred {
+/* .blurred {
   filter: blur(2px);
   opacity: 0.5;
   transition: filter 2.5s ease, opacity 1.0s ease;
 }
 
-/* Nút được chọn vẫn rõ ràng */
+
 #section2 .button.active {
   transform: scale(1.1);
   z-index: 2;
   position: relative;
+  transition: transform 0.3s ease;
+} */
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+#section2 .button.active {
+  background-color: #393844;
+  pointer-events: auto;
+  opacity: 1;
+  transform: scale(1.2); /* ✅ cú pháp đúng */
   transition: transform 0.3s ease;
 }

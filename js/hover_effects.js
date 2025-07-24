@@ -26,8 +26,8 @@ export function handleHoverEffects() {
         }, 600);
 
         // Xóa hiệu ứng mờ
-        buttons.forEach(btn => btn.classList.remove('blurred'));
-        section3.classList.remove('blurred');
+        buttons.forEach(btn => btn.classList.remove('disabled'));
+        section3.classList.remove('disabled');
         
       }
 
@@ -42,14 +42,15 @@ export function handleHoverEffects() {
         // Làm mờ các button khác
         buttons.forEach(btn => {
           if (btn !== button) {
-            btn.classList.add('blurred');
+            btn.classList.add('disabled');
           } else {
-            btn.classList.remove('blurred');
+            btn.classList.remove('disabled');
           }
         });
 
-        section3.classList.add('blurred');
-        document.getElementById('section1').classList.add('blurred');
+        section3.classList.add('disabled');
+        square.classList.add('square-disabled');
+        document.getElementById('section1').classList.add('disabled');
       }, 500);
 
       // 3. Reset descBox
@@ -154,9 +155,10 @@ setTimeout(() => {
 }, 400); // ⏱ 300ms bounce + 100ms buffer
 
 // 5. Gỡ blur
-section3.classList.remove('blurred');
-document.getElementById('section1').classList.remove('blurred');
-buttons.forEach(btn => btn.classList.remove('blurred'));
+square.classList.remove('square-disabled');
+section3.classList.remove('disabled');
+document.getElementById('section1').classList.remove('disabled');
+buttons.forEach(btn => btn.classList.remove('disabled'));
 
 // 6. Clear current button
 currentClickedButton = null;
