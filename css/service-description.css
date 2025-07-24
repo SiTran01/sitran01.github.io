@@ -62,42 +62,42 @@
   z-index: 2;
 }
 
-.service-content {
+/* Nội dung bên trong service-description */
+#service-description .desc-content {
   display: flex;
   flex-direction: column;
   gap: 18px;
 }
 
-.service-img {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin-bottom: 6px;
+#service-description .desc-img {
+  width: 120px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
 }
 
-.service-title {
+#service-description .desc-title {
   font-size: 20px;
   font-weight: 500;
   margin: 0;
   color: #ffffff;
 }
 
-.service-subtitle {
+#service-description .desc-subtitle {
   font-size: 14px;
   font-weight: 500;
   margin: 10px 0 4px;
   color: #a1a1a7;
 }
 
-.service-desc {
+#service-description .desc-desc {
   font-size: 13.5px;
   line-height: 1.45;
   margin: 0 0 12px;
   color: #a1a1a7;
 }
 
-.service-features {
+#service-description .desc-features {
   list-style-type: disc;
   padding-left: 18px;
   margin: 0;
@@ -106,6 +106,6 @@
   color: #cccccc;
 }
 
-.service-features li {
+#service-description .desc-features li {
   margin-bottom: 4px;
 }

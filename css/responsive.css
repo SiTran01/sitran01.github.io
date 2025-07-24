@@ -9,8 +9,8 @@
     #square img {
         width: 80px;
         height: 80px;
-        margin: 0 auto;
         display: block;
+        margin: 0 auto;
     }
 
     #square h1 {
