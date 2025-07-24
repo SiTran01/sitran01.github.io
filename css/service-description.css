@@ -4,7 +4,8 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 380px;
+  width: 100%;
+  max-width: 380px;
   background-color: #393844;
   border-radius: 20px;
   opacity: 0;
