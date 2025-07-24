@@ -28,6 +28,11 @@
   transition-delay: 0.1s;
   padding-left: 0;
 }
+
+#service-description.exit-fade {
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
 /* #service-description.overlay-left,
 #service-description.overlay-right {
   opacity: 1;

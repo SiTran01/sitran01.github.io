@@ -141,13 +141,20 @@ export function handleClickEffects() {
       setTimeout(() => {
         const isLeft = descBox.classList.contains('visible-left');
         const isRight = descBox.classList.contains('visible-right');
+        const isOverlap = descBox.classList.contains('desc-overlap'); // 👈 Thêm dòng này nếu chưa có
         descBox.classList.remove('focus-desc');
 
-        if (isLeft) {
-          descBox.classList.add('exit-left');
-        } else if (isRight) {
-          descBox.classList.add('exit-right');
-        }
+        
+        if (isOverlap) {
+    descBox.classList.add('exit-fade');
+  } else {
+    if (isLeft) {
+      descBox.classList.add('exit-left');
+    } else if (isRight) {
+      descBox.classList.add('exit-right');
+    }
+  }
+        
 
         descBox.style.zIndex = '1';
 
@@ -155,7 +162,7 @@ export function handleClickEffects() {
           descBox.classList.remove(
             'visible-left', 'visible-right',
             'desc-overlap',
-            'exit-left', 'exit-right'
+            'exit-left', 'exit-right', 'exit-fade'
           );
           descBox.style.left = '';
           descBox.style.top = '';
