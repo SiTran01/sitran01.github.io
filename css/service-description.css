@@ -1,13 +1,15 @@
 #service-description {
   position: absolute;
   top: 0;
+  bottom: 0;
   left: 0;
   width: 80%;
   max-width: 380px;
+  max-height: 90vh;
   background-color: #393844;
   border-radius: 20px;
   opacity: 0;
-  pointer-events: none;
+
   transform: translateX(0);
   z-index: 1;
   padding: 40px 30px 25px 30px;
@@ -19,6 +21,10 @@
   will-change: transform, opacity;
   font-family: 'Lexend', sans-serif;
   color: #ffffff;
+  overflow-y: auto;
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: #888 #2e2e35; /* Firefox */
+   scroll-behavior: smooth;
 }
 
 #service-description.desc-overlap {
