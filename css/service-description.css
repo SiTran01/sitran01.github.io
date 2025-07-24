@@ -21,6 +21,20 @@
   will-change: transform, opacity;
 }
 
+#service-description.desc-overlap {
+  transform: translateX(0);
+  z-index: 3; /* cao hơn square */
+  opacity: 1;
+  transition-delay: 0.1s;
+  padding-left: 0;
+}
+/* #service-description.overlay-left,
+#service-description.overlay-right {
+  opacity: 1;
+  transform: none;
+  z-index: 2;
+  transition-delay: 0.1s;
+} */
 
 #service-description.visible-right {
   opacity: 1;

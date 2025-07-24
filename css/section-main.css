@@ -5,10 +5,8 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 100%;
+  width: 200vw;
   padding: 20px;
-  /* perspective: 1200px;
-  perspective-origin: 70% 50%; */
 }
 #main {
   max-width: 100%;

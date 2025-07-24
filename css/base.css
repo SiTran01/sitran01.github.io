@@ -78,3 +78,10 @@ body::after {
   }
 }
 
+/* #service-description.overlay-left,
+#service-description.overlay-right {
+  opacity: 1;
+  transform: none;
+  z-index: 2;
+  transition-delay: 0.1s;
+} */

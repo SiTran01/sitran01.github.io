@@ -6,101 +6,97 @@ export function handleClickEffects() {
   const descBox = document.getElementById('service-description');
   const square = document.getElementById('square');
   const section3 = document.getElementById('section3');
+  const section1 = document.getElementById('section1');
   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
   let currentClickedButton = null;
   let descTimeout = null;
-  let direction; // 🟢 cần dùng lại khi click ra ngoài
+  let direction = null;
 
   buttons.forEach(button => {
     button.addEventListener('click', () => {
-      if (isMobile) return;
-      if (currentClickedButton === button) return;
 
-      // 1. Reset button trước đó
+      // Reset nút cũ
       if (currentClickedButton) {
         currentClickedButton.classList.remove('active');
         currentClickedButton.classList.add('button-reverse');
         setTimeout(() => {
           currentClickedButton.classList.remove('button-reverse');
         }, 600);
-
-        // Xóa hiệu ứng mờ
         buttons.forEach(btn => btn.classList.remove('disabled'));
         section3.classList.remove('disabled');
       }
 
+      // Kích hoạt nút mới
       button.classList.add('active');
-      const iconEl = button.querySelector('.icon-gradient');
-      if (iconEl) {
-        iconEl.style.animation = 'gradientText 2.5s forwards';
-      }
+      const icon = button.querySelector('.icon-gradient');
+      if (icon) icon.style.animation = 'gradientText 2.5s forwards';
 
-      // const labelEl = button.querySelector('.label');
-      // if (labelEl) {
-      //   labelEl.style.animation = 'gradientText 2.0s forwards';
-      // }
-
-
-      // 2. Gán button hiện tại
+      // Gán lại button hiện tại
       setTimeout(() => {
         currentClickedButton = button;
-        
-        
-        // Gradient cho icon
         applySVGGradient(button.querySelector('.notion-icon'), 'url(#icon-gradient-hover)');
-
-        // Làm mờ các button khác
-        buttons.forEach(btn => {
-          if (btn !== button) {
-            btn.classList.add('disabled');
-          } else {
-            btn.classList.remove('disabled');
-          }
-        });
-
+        buttons.forEach(btn => btn.classList.toggle('disabled', btn !== button));
         section3.classList.add('disabled');
+        section1.classList.add('disabled');
         square.classList.add('square-disabled');
-        document.getElementById('section1').classList.add('disabled');
       }, 1000);
 
-      // 3. Reset descBox
-      descBox.classList.remove('visible-left', 'visible-right', 'focus-desc');
+      // Reset mô tả
       if (descTimeout) clearTimeout(descTimeout);
+      descBox.classList.remove('visible-left', 'visible-right', 'desc-overlap', 'desc-overlap', 'focus-desc');
 
-      // 4. Tính hướng
+      // Tính hướng
       const squareRect = square.getBoundingClientRect();
       const buttonRect = button.getBoundingClientRect();
       const squareCenterX = squareRect.left + squareRect.width / 2;
       const buttonCenterX = buttonRect.left + buttonRect.width / 2;
       direction = buttonCenterX < squareCenterX ? 'right' : 'left';
 
-      // 5. Square nghiêng
+      // Square nghiêng
       square.classList.remove('tilt-left', 'tilt-right');
       square.classList.add(direction === 'left' ? 'tilt-right' : 'tilt-left');
 
-      // 6. Hiện mô tả
+      // Hiện mô tả
       descTimeout = setTimeout(() => {
         updateDescription(button, descBox);
+
+        const descWidth = descBox.offsetWidth;
+        const windowWidth = window.innerWidth;
+        const spaceLeft = squareRect.left;
+        const spaceRight = windowWidth - squareRect.right;
+
         descBox.style.top = `${squareRect.top + window.scrollY}px`;
 
         if (direction === 'left') {
-          descBox.style.left = `${squareRect.left + window.scrollX}px`;
-          descBox.classList.add('visible-right');
+          if (spaceRight >= descWidth) {
+            // Trượt ra phải (square bên trái)
+            descBox.style.left = `${squareRect.left + window.scrollX}px`;
+            descBox.classList.add('visible-right');
+          } else {
+            // Không đủ chỗ → đè lên square
+            descBox.style.left = `${squareRect.left + window.scrollX}px`;
+            descBox.classList.add('desc-overlap');
+          }
         } else {
-          const descWidth = descBox.offsetWidth;
-          descBox.style.left = `${squareRect.right + window.scrollX - descWidth}px`;
-          descBox.classList.add('visible-left');
+          if (spaceLeft >= descWidth) {
+            // Trượt ra trái (square bên phải)
+            descBox.style.left = `${squareRect.right + window.scrollX - descWidth}px`;
+            descBox.classList.add('visible-left');
+          } else {
+            // Không đủ chỗ → đè lên square
+            descBox.style.left = `${squareRect.left + window.scrollX}px`;
+            descBox.classList.add('desc-overlap');
+          }
         }
 
         descBox.style.zIndex = '2';
 
-        // Đợi 1 frame rồi mới add hiệu ứng focus
         setTimeout(() => {
           descBox.classList.add('focus-desc');
         }, 30);
 
-        // Reset nghiêng square sau khi trượt xong
+        // Reset nghiêng sau khi trượt
         setTimeout(() => {
           square.classList.remove('tilt-left', 'tilt-right');
         }, 450);
@@ -108,82 +104,71 @@ export function handleClickEffects() {
     });
   });
 
-  // 7. Click ra ngoài để reset toàn bộ
-document.addEventListener('click', (e) => {
-  if (
-    !descBox.contains(e.target) &&
-    ![...buttons].some(btn => btn.contains(e.target))
-  ) {
-    if (!currentClickedButton) return; // 🛑 Không có button đang active thì thoát
+  // Reset toàn bộ khi click ra ngoài
+  document.addEventListener('click', (e) => {
+    if (
+      !descBox.contains(e.target) &&
+      ![...buttons].some(btn => btn.contains(e.target))
+    ) {
+      if (!currentClickedButton) return;
 
-    console.log('👉 Clicked outside — resetting UI');
+      console.log('👉 Clicked outside — resetting UI');
 
-    // 1. Reset nút đang click
-if (currentClickedButton) {
-  currentClickedButton.classList.remove('active');
-  const icon = currentClickedButton.querySelector('.icon-gradient');
-  // const label = currentClickedButton.querySelector('.label');
-  if (icon) icon.style.animation = '';
-  // Gradient cho icon
-  applySVGGradient(currentClickedButton.querySelector('.notion-icon'), 'url(#icon-gradient)');
+      // Reset button
+      currentClickedButton.classList.remove('active');
+      const icon = currentClickedButton.querySelector('.icon-gradient');
+      if (icon) icon.style.animation = '';
+      applySVGGradient(currentClickedButton.querySelector('.notion-icon'), 'url(#icon-gradient)');
+      currentClickedButton.classList.add('button-reverse');
+      setTimeout(() => {
+        currentClickedButton.classList.remove('button-reverse');
+      }, 600);
 
-  // if (label) label.style.animation = '';
-  currentClickedButton.classList.add('button-reverse');
-  setTimeout(() => {
-    currentClickedButton.classList.remove('button-reverse');
-  }, 600);
-}
+      // Square nghiêng và bounce
+      square.classList.remove('tilt-left', 'tilt-right', 'square-bounce');
+      if (direction === 'left') {
+        square.classList.add('tilt-right');
+      } else if (direction === 'right') {
+        square.classList.add('tilt-left');
+      }
 
-// 2. Square nghiêng đúng hướng cũ
-square.classList.remove('tilt-left', 'tilt-right', 'square-bounce');
-if (direction === 'left') {
-  square.classList.add('tilt-right');
-} else if (direction === 'right') {
-  square.classList.add('tilt-left');
-}
+      setTimeout(() => {
+        square.classList.remove('tilt-left', 'tilt-right');
+        square.classList.add('square-bounce');
+      }, 800);
 
-// 3. Square bounce
-setTimeout(() => {
-  square.classList.remove('tilt-left', 'tilt-right');
-  square.classList.add('square-bounce');
-}, 800); // Delay 100ms cho nghiêng nhẹ rồi mới nảy
+      // Trượt mô tả
+      setTimeout(() => {
+        const isLeft = descBox.classList.contains('visible-left');
+        const isRight = descBox.classList.contains('visible-right');
+        descBox.classList.remove('focus-desc');
 
-// 4. Sau khi bounce xong → xử lý desc trượt
-setTimeout(() => {
-  const isLeft = descBox.classList.contains('visible-left');
-  const isRight = descBox.classList.contains('visible-right');
+        if (isLeft) {
+          descBox.classList.add('exit-left');
+        } else if (isRight) {
+          descBox.classList.add('exit-right');
+        }
 
-  // Remove hiệu ứng focus
-  descBox.classList.remove('focus-desc');
+        descBox.style.zIndex = '1';
 
-  // Add class trượt ngược
-  if (isLeft) {
-    descBox.classList.add('exit-left');
-  } else if (isRight) {
-    descBox.classList.add('exit-right');
-  }
+        setTimeout(() => {
+          descBox.classList.remove(
+            'visible-left', 'visible-right',
+            'desc-overlap',
+            'exit-left', 'exit-right'
+          );
+          descBox.style.left = '';
+          descBox.style.top = '';
+        }, 400);
+      }, 400);
 
-  // Hạ z-index chuẩn bị trượt
-  descBox.style.zIndex = '1';
+      // Gỡ mờ
+      square.classList.remove('square-disabled');
+      section3.classList.remove('disabled');
+      section1.classList.remove('disabled');
+      buttons.forEach(btn => btn.classList.remove('disabled'));
 
-  // Reset hoàn toàn sau 400ms
-  setTimeout(() => {
-    descBox.classList.remove('visible-left', 'visible-right', 'exit-right', 'exit-left');
-    descBox.style.left = '';
-    descBox.style.top = '';
-  }, 400);
-}, 400); // ⏱ 300ms bounce + 100ms buffer
-
-// 5. Gỡ blur
-square.classList.remove('square-disabled');
-section3.classList.remove('disabled');
-document.getElementById('section1').classList.remove('disabled');
-buttons.forEach(btn => btn.classList.remove('disabled'));
-
-// 6. Clear current button
-currentClickedButton = null;
-  }
-});
-
-
+      currentClickedButton = null;
+    }
+  });
 }

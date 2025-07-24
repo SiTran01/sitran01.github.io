@@ -1,4 +1,4 @@
-@media only screen and (min-width: 668px) and (max-width: 991px) {
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
 
     #square {
             	margin-top: 0px;
@@ -9,6 +9,7 @@
         width: 80px;
         height: 80px;
         margin: 0 auto;
+        display: block;
     }
 
     #square h1 {
@@ -48,7 +49,7 @@
     }
 
 }
-@media only screen and (max-width: 667px) {
+@media only screen and (max-width: 767px) {
     #square {
             	margin-top: 0px;
                 padding: 40px 35px 20px 35px; 
@@ -58,7 +59,7 @@
     #square img {
         width: 80px;
         height: 80px;
-        
+        display: block;
         margin: 0 auto;
     }
 
