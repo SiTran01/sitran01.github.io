@@ -49,7 +49,7 @@
         top: 50px;                /* điều chỉnh lại vị trí trên nếu cần */
     }
     #service-description {
-    width: 60%;
+    width: 80%;
     max-width: none;
     left: 50%;
     transform: translateX(-50%);
@@ -143,7 +143,7 @@
     }
 
     #service-description {
-    width: 60%;
+    width: 80%;
     max-width: none;
     left: 50%;
     transform: translateX(-50%);
