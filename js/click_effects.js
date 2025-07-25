@@ -132,27 +132,36 @@ export function handleClickEffects() {
     const isOverlap = descBox.classList.contains('desc-overlap');
     descBox.classList.remove('focus-desc');
 
-    if (isOverlap) {
-      descBox.classList.add('exit-fade');
-      setTimeout(() => {
-        descBox.classList.remove('exit-fade');
-      }, 400);
-    } else {
-      if (isLeft) descBox.classList.add('exit-left');
-      else if (isRight) descBox.classList.add('exit-right');
-    }
-
+  
+if (isOverlap) {
+  descBox.classList.add('exit-fade');
+  setTimeout(() => {
+    descBox.classList.remove('exit-fade', 'desc-overlap');
+    descBox.style.left = '';
+    descBox.style.top = '';
     descBox.style.zIndex = '0';
+  }, 400);
+} else {
+  // 👉 Add hiệu ứng NGAY LẬP TỨC
+  setTimeout(() => {
+  if (isLeft) descBox.classList.add('exit-left');
+  else if (isRight) descBox.classList.add('exit-right');
+}, 400);
 
-    setTimeout(() => {
-      descBox.classList.remove(
-        'visible-left', 'visible-right',
-        'desc-overlap', 'exit-left', 'exit-right'
-      );
-      descBox.style.left = '';
-      descBox.style.top = '';
-    }, 400);
-
+  // ⏱ Sau 400ms mới clean
+  setTimeout(() => {
+    descBox.classList.remove(
+      'visible-left',
+      'visible-right',
+      'desc-overlap',
+      'exit-left',
+      'exit-right'
+    );
+    descBox.style.left = '';
+    descBox.style.top = '';
+    descBox.style.zIndex = '0';
+  }, 800);
+}
     square.classList.remove('tilt-left', 'tilt-right', 'square-bounce');
     if (direction === 'left') square.classList.add('tilt-right');
     else if (direction === 'right') square.classList.add('tilt-left');
