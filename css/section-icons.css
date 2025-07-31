@@ -36,7 +36,7 @@
     color: #7e8bff;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.4s ease;
+    transition: all 0.7s ease;
 }
 #section3 .icon-button i {
     font-size: 24px;
@@ -62,11 +62,11 @@
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
 }
-.icon-button:hover .label {
+/* .icon-button:hover .label {
     transition-delay: 0.8s;
     opacity: 1;
     visibility: visible;
-}
+} */
 .buttons-section3 li {
     margin: 0;
     animation: zoomOutFadeIn 1.0s ease-out forwards;
