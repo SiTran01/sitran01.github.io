@@ -1,280 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tran Si</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap" rel="stylesheet" />
-
-  <!-- Font Awesome -->
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet" />
-
-  <!-- CSS riêng -->
-  <link rel="stylesheet" href="css/style.css" />
-
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="images/favicon.png" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio | Embedded Engineer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@300;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <div id="wrapper">
-    <div id="square" class="square-enter">
-      <!-- Icon Messenger & Email bên trái -->
-      <div id="section1">
-        <div class="contact-icons-right">
-          <a id="email-link" target="_blank" rel="noopener noreferrer">
-            <i class="far fa-envelope"></i>
-          </a>
-          <a href="https://m.me/tranquocsi01" target="_blank" rel="noopener noreferrer">
-            <i class="fab fa-facebook-messenger"></i>
-          </a>
-        </div>
 
-        <!-- Avatar -->
-        <img src="images/avt.png" alt="Avatar" />
-        <div class="section">
-          <h1>Trần Sĩ</h1>
-          <p>
-            <em>"Technology is best when it brings people together."</em><br />
-            Học hỏi, khám phá công nghệ. Định hướng phát triển trong lĩnh vực nhúng &amp; IoT.
-          </p>
-        </div>
-      </div>
-      
-      <div class="separator"></div>
+    <canvas id="canvas-bg"></canvas>
 
-      <!-- Mạng xã hội -->
-      <div class="section">
-        <ul id="section2" class="buttons-section2">
-          <li>
-            <div
-              class="button"
-              data-img="https://example.com/yen-sao.jpg"
-              data-title="🌟 Blopzi Kuro 🌈"
-              data-desc="✨ Zimbo rumba plax 🚀💫. Noko lara ping ping 🌀🎶 wobblex, grizo 🍀🎯 tambloo shappa. Loremoo emoji mix 🎉🔥 dodo clap clap 🦄🌍 vibra. Texty flux jumpo 💡⚡ yoyo skrrr moo moo 🐧🥑. Emoji ipsum random 🛸🌸 zigzag 🧩🎲 forever repeat."
-              data-subtitle="🔮 Why choose Blopzi?"
-              data-features='["🍭 Bloop 100%", "🧊 Zero wobble", "💖 Health vibez", "🎁 Mega pack deluxe"]'
-
-            >
-              <span class="icon-gradient"><i class="fa-solid fa-briefcase"></i></span>
-              <span class="label">Fluffy Wobblex</span>
-              <span class="border-blue"></span>
-              <span class="border-blue-bottom"></span>
-              <span class="border-pink"></span>
-              <span class="border-pink-top"></span>
-            </div>
-          </li>
-          <li>
-            <div
-              class="button"
-              data-img="./images/avt.png"
-              data-title="Hệ thống Notion cá nhân & doanh nghiệp"
-              data-desc="Thiết kế hệ thống Notion tùy chỉnh theo yêu cầu: quản lý học tập, tài chính, tài liệu, CRM, content calendar,..."
-              data-subtitle="Tính năng nổi bật"
-              data-features='[
-                "Dashboard tổng quan trực quan",
-                "Chia sẻ tài nguyên linh hoạt",
-                "Quản lý học viên, công việc, dữ liệu",
-                "Phân quyền, liên kết & tự động hóa"
-              ]'
-            >
-              <svg class="notion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
-                <defs>
-                  <linearGradient id="icon-gradient" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#7e8bff"/>
-                    <stop offset="100%" stop-color="#7e8bff"/>
-                  </linearGradient>
-                  <linearGradient id="icon-gradient-hover" ...>
-                    <stop offset="0%" stop-color="#ff00ff"/>
-                    <stop offset="100%" stop-color="#00ffff"/>
-                  </linearGradient>
-                </defs>
-                <path
-                  d="M3.25781 3.11684C3.67771 3.45796 3.83523 3.43193 4.62369 3.37933L12.0571 2.93299C12.2147 2.93299 12.0836 2.77571 12.0311 2.74957L10.7965 1.85711C10.56 1.67347 10.2448 1.46315 9.64083 1.51576L2.44308 2.04074C2.18059 2.06677 2.12815 2.19801 2.2327 2.30322L3.25781 3.11684ZM3.7041 4.84917V12.6704C3.7041 13.0907 3.91415 13.248 4.38693 13.222L12.5562 12.7493C13.0292 12.7233 13.0819 12.4341 13.0819 12.0927V4.32397C13.0819 3.98306 12.9508 3.79921 12.6612 3.82545L4.12422 4.32397C3.80918 4.35044 3.7041 4.50803 3.7041 4.84917ZM11.7688 5.26872C11.8212 5.50518 11.7688 5.74142 11.5319 5.76799L11.1383 5.84641V11.6205C10.7965 11.8042 10.4814 11.9092 10.2188 11.9092C9.79835 11.9092 9.69305 11.7779 9.37812 11.3844L6.80345 7.34249V11.2532L7.61816 11.437C7.61816 11.437 7.61816 11.9092 6.96086 11.9092L5.14879 12.0143C5.09615 11.9092 5.14879 11.647 5.33259 11.5944L5.80546 11.4634V6.29276L5.1489 6.24015C5.09625 6.00369 5.22739 5.66278 5.5954 5.63631L7.53935 5.50528L10.2188 9.5998V5.97765L9.53564 5.89924C9.4832 5.61018 9.69305 5.40028 9.95576 5.37425L11.7688 5.26872ZM1.83874 1.33212L9.32557 0.780787C10.245 0.701932 10.4815 0.754753 11.0594 1.17452L13.4492 2.85424C13.8436 3.14309 13.975 3.22173 13.975 3.53661V12.7493C13.975 13.3266 13.7647 13.6681 13.0293 13.7203L4.33492 14.2454C3.78291 14.2717 3.52019 14.193 3.23111 13.8253L1.47116 11.5419C1.1558 11.1216 1.02466 10.8071 1.02466 10.4392V2.25041C1.02466 1.77825 1.23504 1.38441 1.83874 1.33212Z"
-                  fill="url(#icon-gradient)"
-                />
-              </svg>
-              <span class="label">Notion</span>
-              <span class="border-blue"></span>
-              <span class="border-blue-bottom"></span>
-              <span class="border-pink"></span>
-              <span class="border-pink-top"></span>
-            </div>
-          </li>
-          <li class="service-item">
-            <div 
-              class="button" 
-              data-service="Google Sites" 
-              data-title="Google Sites" 
-              data-subtitle="Giải pháp Website miễn phí, đơn giản từ Google" 
-              data-description="Google Sites là công cụ xây dựng website miễn phí từ Google, phù hợp cho cá nhân, doanh nghiệp nhỏ, hoặc nhóm dự án muốn xây dựng trang web đơn giản, nhanh chóng mà không cần kỹ năng lập trình." 
-              data-features='[
-                "Dễ sử dụng, kéo thả trực quan",
-                "Tích hợp tốt với Google Drive, Docs, Sheets",
-                "Hosting miễn phí, tốc độ ổn định",
-                "Responsive trên mọi thiết bị",
-                "Không cần mua tên miền (sử dụng sites.google.com)"
-              ]' 
-              data-note="Dịch vụ của mình sẽ giúp bạn thiết kế giao diện đẹp mắt, chuẩn SEO và tối ưu hiệu suất cho Google Sites – đặc biệt phù hợp với người mới hoặc doanh nghiệp nhỏ cần hiện diện nhanh trên Internet."
-              data-image="https://upload.wikimedia.org/wikipedia/commons/5/59/Google_Sites_logo.png"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 88" class="notion-icon">
-                <defs>
-                  <linearGradient id="icon-gradient" x1="0" y1="0" x2="1" y2="0">
-                    <stop offset="0%" stop-color="#7e8bff"/>
-                    <stop offset="100%" stop-color="#7e8bff"/>
-                  </linearGradient>
-                  <linearGradient id="icon-gradient-hover" ...>
-                    <stop offset="0%" stop-color="#ff00ff"/>
-                    <stop offset="100%" stop-color="#00ffff"/>
-                  </linearGradient>
-                </defs>
-                <path d="M 42,22 54.065,24.28 64,22 42,0 38.965,10.43 Z" fill="#000000" />
-                <path d="M 42,22 V 0 H 6 C 2.685,0 0,2.685 0,6 v 76 c 0,3.315 2.685,6 6,6 h 52 c 3.315,0 6,-2.685 6,-6 V 22 Z" fill="url(#icon-gradient)" />
-                <path d="M 40,61 H 14 V 44 h 26 z m 10,0 H 45 V 44 h 5 z M 50,39 H 14 v -5 h 36 z" fill="#393844" />
-              </svg>
-              <span class="label">Google Sites</span>
-              <span class="border-blue"></span>
-              <span class="border-blue-bottom"></span>
-              <span class="border-pink"></span>
-              <span class="border-pink-top"></span>
-            </div>
-          </li>
-          <li class="service-item">
-            <div 
-              class="button" 
-              data-service="Smart Home"
-              data-title="Hệ Thống Nhà Thông Minh"
-              data-subtitle="Giải pháp điều khiển tự động hoá cho không gian sống hiện đại"
-              data-description="Smart Home giúp bạn kiểm soát mọi thiết bị điện tử trong nhà một cách thông minh, qua điện thoại hoặc giọng nói. Hệ thống hỗ trợ điều khiển đèn, quạt, rèm cửa, camera, cảm biến chuyển động,... mang lại sự tiện nghi, an toàn và tiết kiệm năng lượng."
-              data-features='[
-                "Điều khiển từ xa qua điện thoại",
-                "Tích hợp trợ lý ảo như Google Assistant, Alexa",
-                "Tự động hóa ngữ cảnh (bật đèn khi trời tối, mở rèm buổi sáng...)",
-                "Lắp đặt linh hoạt, không phá vỡ kết cấu nhà",
-                "Tiết kiệm điện và tăng trải nghiệm sống hiện đại"
-              ]'
-              data-note="Bên mình tư vấn, thiết kế và thi công hệ thống Smart Home phù hợp từng nhu cầu thực tế, từ nhà ở đến văn phòng, khách sạn,... đảm bảo an toàn và dễ sử dụng ngay cả với người lớn tuổi."
-              data-image="https://cdn-icons-png.flaticon.com/512/5785/5785803.png"
-            >
-              <span class="icon-gradient"><i class="fa-solid fa-house-user"></i></span>
-              <span class="label">Smart Home</span>
-              <span class="border-blue"></span>
-              <span class="border-blue-bottom"></span>
-              <span class="border-pink"></span>
-              <span class="border-pink-top"></span>
-            </div>
-          </li>
-
-          <li class="service-item">
-            <div 
-              class="button" 
-              data-service="AI Agent"
-              data-title="Trợ Lý Ảo AI"
-              data-subtitle="Tự động hóa các công việc kinh doanh bằng Trí tuệ nhân tạo"
-              data-description="AI Agent là hệ thống trợ lý ảo sử dụng trí tuệ nhân tạo để thực hiện các công việc như chăm sóc khách hàng, trả lời tin nhắn tự động, xử lý đơn hàng, tổng hợp báo cáo,... giúp tiết kiệm thời gian và tối ưu vận hành cho doanh nghiệp."
-              data-features='[
-                "Tự động nhắn tin trả lời khách hàng 24/7",
-                "Phân loại và ưu tiên khách hàng theo kịch bản",
-                "Kết nối đa nền tảng: Facebook, Zalo, Website,...",
-                "Học hỏi liên tục theo dữ liệu người dùng",
-                "Tích hợp dễ dàng với hệ thống quản lý hiện tại"
-              ]'
-              data-note="Dịch vụ phù hợp với cá nhân kinh doanh online, SMEs hoặc những ai muốn có một hệ thống tự động hỗ trợ mình mọi lúc mọi nơi."
-              data-image="https://cdn-icons-png.flaticon.com/512/4712/4712035.png"
-            >
-              <span class="icon-gradient"><i class="fa-solid fa-robot"></i></span>
-              <span class="label">AI Agent</span>
-              <!-- 4 border span -->
-              <span class="border-blue"></span>
-              <span class="border-blue-bottom"></span>
-              <span class="border-pink"></span>
-              <span class="border-pink-top"></span>
-            </div>
-          </li>
-          
+    <nav class="navbar glass">
+        <div class="logo">&lt;Dev/&gt;</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
-        <!-- Đây là box mô tả dùng chung -->
-        <!-- <div id="service-description" class="service-description hidden"></div> -->
-      </div>
-
-      <div class="separator"></div>
-
-      <!-- Icon liên hệ & sản phẩm -->
-      <div class="section icon-section-center">
-        <ul id="section3" class="buttons-section3">
-          <li>
-            <a href="https://github.com/SiTran01" class="icon-button" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-github"></i><span class="label">GitHub</span>
-            </a>
-          </li>
-          <!-- Đã thay thế Vimeo bằng Notion -->
-          <!-- <li>
-            <a href="https://www.notion.so/" class="icon-button" target="_blank" rel="noopener noreferrer">
-                <svg class="notion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15">
-                <path
-                    d="M3.25781 3.11684C3.67771 3.45796 3.83523 3.43193 4.62369 3.37933L12.0571 2.93299C12.2147 2.93299 12.0836 2.77571 12.0311 2.74957L10.7965 1.85711C10.56 1.67347 10.2448 1.46315 9.64083 1.51576L2.44308 2.04074C2.18059 2.06677 2.12815 2.19801 2.2327 2.30322L3.25781 3.11684ZM3.7041 4.84917V12.6704C3.7041 13.0907 3.91415 13.248 4.38693 13.222L12.5562 12.7493C13.0292 12.7233 13.0819 12.4341 13.0819 12.0927V4.32397C13.0819 3.98306 12.9508 3.79921 12.6612 3.82545L4.12422 4.32397C3.80918 4.35044 3.7041 4.50803 3.7041 4.84917ZM11.7688 5.26872C11.8212 5.50518 11.7688 5.74142 11.5319 5.76799L11.1383 5.84641V11.6205C10.7965 11.8042 10.4814 11.9092 10.2188 11.9092C9.79835 11.9092 9.69305 11.7779 9.37812 11.3844L6.80345 7.34249V11.2532L7.61816 11.437C7.61816 11.437 7.61816 11.9092 6.96086 11.9092L5.14879 12.0143C5.09615 11.9092 5.14879 11.647 5.33259 11.5944L5.80546 11.4634V6.29276L5.1489 6.24015C5.09625 6.00369 5.22739 5.66278 5.5954 5.63631L7.53935 5.50528L10.2188 9.5998V5.97765L9.53564 5.89924C9.4832 5.61018 9.69305 5.40028 9.95576 5.37425L11.7688 5.26872ZM1.83874 1.33212L9.32557 0.780787C10.245 0.701932 10.4815 0.754753 11.0594 1.17452L13.4492 2.85424C13.8436 3.14309 13.975 3.22173 13.975 3.53661V12.7493C13.975 13.3266 13.7647 13.6681 13.0293 13.7203L4.33492 14.2454C3.78291 14.2717 3.52019 14.193 3.23111 13.8253L1.47116 11.5419C1.1558 11.1216 1.02466 10.8071 1.02466 10.4392V2.25041C1.02466 1.77825 1.23504 1.38441 1.83874 1.33212Z"
-                    fill="currentColor"
-                />
-                </svg>
-                <span class="label">Notion</span>
-            </a>
-          </li> -->
-          <!-- <li>
-            <a href="https://www.facebook.com/tranquocsi01/" class="icon-button" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-facebook"></i><span class="label">facebook</span>
-            </a>
-          </li> -->
-          <li>
-            <a href="https://www.youtube.com/@sitran7594" class="icon-button" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-youtube"></i><span class="label">YouTube</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.pinterest.com/SiChen01/" class="icon-button" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-pinterest"></i><span class="label">Pinterest</span>
-            </a>
-          </li>
-          <li>
-            <a href="https://www.instagram.com/sichen01/" class="icon-button" target="_blank" rel="noopener noreferrer">
-              <i class="fab fa-instagram"></i><span class="label">Instagram</span>
-            </a>
-          </li>
-          <!-- <li>
-            <a href="https://www.threads.com/@sichen01" class="icon-button" target="_blank" rel="noopener noreferrer">
-              <i class="fa-brands fa-threads"></i><span class="label">Threads</span>
-            </a>
-          </li> -->
-          <li>
-            <a href="https://x.com/TranSi0104" class="icon-button" target="_blank" rel="noopener noreferrer">
-              <svg class="notion-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" width="50px" height="50px">
-                <path fill="currentColor" d="M 11 4 C 7.134 4 4 7.134 4 11 L 4 39 C 4 42.866 7.134 46 11 46 L 39 46 C 42.866 46 46 42.866 46 39 L 46 11 C 46 7.134 42.866 4 39 4 L 11 4 z M 13.085938 13 L 21.023438 13 L 26.660156 21.009766 L 33.5 13 L 36 13 L 27.789062 22.613281 L 37.914062 37 L 29.978516 37 L 23.4375 27.707031 L 15.5 37 L 13 37 L 22.308594 26.103516 L 13.085938 13 z M 16.914062 15 L 31.021484 35 L 34.085938 35 L 19.978516 15 L 16.914062 15 z"/>
-              </svg>
-              <span class="label">Twitter</span>
-            </a>
-          </li>
-
-        </ul>
-      </div>
-    
-    </div>
-    <div id="service-description" >
-      <div class="service-content">
-        <img id="desc-img" class="service-img" src="" alt="Service Image" />
-        <div class="service-text">
-          <h1 id="desc-title" class="service-title"></h1>
-          <p id="desc-text" class="service-desc"></p>
-          <h2 id="desc-subtitle" class="service-subtitle"></h2>
-          <ul id="desc-features" class="service-features"></ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
         </div>
-      </div>
-    </div>
-  </div>
+    </nav>
 
-  <script type="module" src="./js/main.js"></script>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="avatar-container">
+                <img src="images/avt.png" alt="Avatar" class="avatar">
+                <div class="glow-ring"></div>
+            </div>
+            <h1>Hi!, I'm <span class="neon-text">Tran Si</span></h1>
+            <p class="typing-text">I am <span class="type-effect"></span></p>
+            <div class="cta-buttons">
+                <a href="#projects" class="btn btn-primary">View Projects</a>
+                <a href="#contact" class="btn btn-secondary">Contact</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <h2 class="section-title">About Me</h2>
+        <div class="card glass">
+            <p>Passionate about embedded programming and IoT. I love creating smart systems that combine powerful
+                hardware and optimal software. Always exploring new technologies and pursuing perfection in every line
+                of code.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="container">
+        <h2 class="section-title">Skills & Expertise</h2>
+        <div class="skills-grid">
+            <div class="skill-card glass">
+                <i class="fas fa-microchip icon-neon"></i>
+                <h3>Hardware</h3>
+                <p>STM32, ESP32, Arduino, AVR, Altium Designer</p>
+            </div>
+            <div class="skill-card glass">
+                <i class="fas fa-code icon-neon"></i>
+                <h3>Firmware</h3>
+                <p>C/C++, Embedded C, Python, RTOS</p>
+            </div>
+            <div class="skill-card glass">
+                <i class="fas fa-network-wired icon-neon"></i>
+                <h3>Connectivity</h3>
+                <p>MQTT, LoRa, BLE, WiFi, SPI/I2C/UART</p>
+            </div>
+            <div class="skill-card glass">
+                <i class="fab fa-git-alt icon-neon"></i>
+                <h3>Tools</h3>
+                <p>Git, VS Code, PlatformIO, Logic Analyzer</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="container">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card glass">
+                <div class="project-thumb"></div>
+                <div class="project-info">
+                    <h3>Smart Home IoT</h3>
+                    <p class="tech-stack"><span>ESP32</span> <span>MQTT</span> <span>App</span></p>
+                    <p>Smart home control system via internet using MQTT protocol.</p>
+                    <a href="pages/projects.html" class="btn-sm">View Details <i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+            <div class="project-card glass">
+                <div class="project-thumb"></div>
+                <div class="project-info">
+                    <h3>Autonomous Robot</h3>
+                    <p class="tech-stack"><span>STM32</span> <span>PID</span> <span>C++</span></p>
+                    <p>Line following and obstacle avoidance robot using stable PID algorithm.</p>
+                    <a href="pages/projects.html" class="btn-sm">View Details <i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+            <div class="project-card glass">
+                <div class="project-thumb"></div>
+                <div class="project-info">
+                    <h3>Weather Station</h3>
+                    <p class="tech-stack"><span>LoraWan</span> <span>Sensors</span></p>
+                    <p>Weather station sending real-time data via LoRa waves.</p>
+                    <a href="pages/projects.html" class="btn-sm">View Details <i class="fas fa-info-circle"></i></a>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="pages/projects.html" class="btn btn-primary" style="padding: 12px 40px; font-size: 1.1rem;">
+                View More <i class="fas fa-arrow-right" style="margin-left: 8px;"></i>
+            </a>
+        </div>
+    </section>
+
+    <section id="contact" class="container bio-section">
+        <h2 class="section-title">Contact</h2>
+        <div class="bio-links">
+            <a href="https://github.com/SiTran01" class="bio-btn glass" target="_blank">
+                <i class="fab fa-github"></i> GitHub
+            </a>
+            <a href="#" class="bio-btn glass">
+                <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="#" class="bio-btn glass">
+                <i class="fab fa-facebook"></i> Facebook
+            </a>
+            <a href="mailto:email@example.com" class="bio-btn glass">
+                <i class="fas fa-envelope"></i> Send Email
+            </a>
+        </div>
+        <footer>
+            <p>Designed by <span style="color:var(--primary)">Me</span> © 2024</p>
+        </footer>
+    </section>
+
+    <div class="assistant-wrapper">
+        <div class="assistant-popup" id="ai-popup">
+            <div class="popup-header">
+                <span>AI Assistant</span>
+                <i class="fas fa-times" id="close-popup"></i>
+            </div>
+            <div class="popup-body">
+                <div class="voice-wave">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <p class="ai-status">Listening...</p>
+            </div>
+        </div>
+
+        <div class="assistant-bubble" id="ai-trigger">
+            <i class="fas fa-microphone-lines"></i>
+            <div class="pulse-ring"></div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
 </body>
+
 </html>
-
-
