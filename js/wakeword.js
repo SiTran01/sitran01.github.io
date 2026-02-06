@@ -216,13 +216,21 @@ class WakeWordDetector {
         this.buffer = new Float32Array(16000); // 1 sec buffer
         this.bufferIdx = 0;
         this.isListening = false;
-        this.confidenceThreshold = 0.50;
+
+        // Python Logic Config
+        this.confidenceThreshold = 0.75; // 75% like python code
+        this.probHistory = []; // maxlen=3
+        this.isTriggered = false;
+        this.postTriggerCount = 0;
         this.cooldown = 0;
 
         this.inputNames = [];
     }
 
     async init() {
+        // Start greeting timer immediately
+        this.scheduleGreeting();
+
         if (typeof ort === 'undefined') {
             alert("Error: ONNX Runtime library not loaded!");
             return;
@@ -259,6 +267,7 @@ class WakeWordDetector {
             console.log("✅ Model Loaded. Inputs:", this.inputNames);
             document.querySelector('.ai-status').innerText = "AI Ready. Click to Start.";
             this.setupUI();
+            this.scheduleGreeting();
         } catch (e) {
             console.error("Failed to load model", e);
             let msg = e.message || String(e);
@@ -272,6 +281,48 @@ class WakeWordDetector {
             // Show full details in alert
             alert("⚠️ MODEL FAILURE ⚠️\n\n" + msg);
         }
+    }
+
+    scheduleGreeting() {
+        console.log("🕒 Greeting Timer Started (5s)...");
+        const status = document.querySelector('.ai-status');
+        const popup = document.querySelector('.assistant-popup');
+
+        // Wait 5 seconds after load
+        setTimeout(() => {
+            console.log("⏰ Greeting Timer Executed!");
+            if (this.isListening) {
+                console.log("⚠️ Skipped greeting: isListening is true");
+                return;
+            }
+
+            // Explicitly SHOW the popup
+            if (popup) {
+                console.log("✅ Popup found. Adding .active class...");
+                popup.classList.add('active'); // This line was missing before!
+            } else {
+                console.error("❌ Popup element .assistant-popup NOT FOUND!");
+            }
+
+            if (status) {
+                status.innerText = "Hi there! I'm Si's little assistant.";
+                console.log("📝 Text updated: Hi there...");
+            }
+
+            // Show next message after 3 seconds
+            setTimeout(() => {
+                if (this.isListening) return;
+                console.log("📝 Showing message 2...");
+                if (status) status.innerText = "Say 'Seven' to ask me anything!";
+
+                // Show final instruction after 3 more seconds
+                setTimeout(() => {
+                    if (this.isListening) return;
+                    console.log("📝 Showing message 3...");
+                    if (status) status.innerText = "Just say 'Seven' and state your request!";
+                }, 3000);
+            }, 3000);
+        }, 5000);
     }
 
     setupUI() {
@@ -302,6 +353,7 @@ class WakeWordDetector {
             this.processor.connect(this.audioContext.destination);
 
             this.isListening = true;
+            document.querySelector('.assistant-popup').classList.add('active'); // Show popup
             document.querySelector('.ai-status').innerText = "Listening...";
             document.querySelector('.glow-ring').classList.add('active'); // Add glow
         } catch (e) {
@@ -318,17 +370,17 @@ class WakeWordDetector {
     }
 
     async processAudioChunk(chunk) {
-        // Roll buffer
-        // New chunk size is ~2048. We keep last 16000.
-        // Shift left
-        const newBuffer = new Float32Array(16000);
+        // OPTIMIZATION: In-place buffer shift (No new allocations)
+        // Keeps the last (16000 - chunk.length) samples effectively
+
         if (chunk.length >= 16000) {
-            newBuffer.set(chunk.slice(chunk.length - 16000));
+            this.buffer.set(chunk.slice(chunk.length - 16000));
         } else {
-            newBuffer.set(this.buffer.slice(chunk.length)); // Keep old
-            newBuffer.set(chunk, 16000 - chunk.length); // Add new
+            // Shift left: move data from [chunk.length] to [0]
+            this.buffer.copyWithin(0, chunk.length);
+            // Append new data at end
+            this.buffer.set(chunk, 16000 - chunk.length);
         }
-        this.buffer = newBuffer;
 
         // Skip inference if cooldown
         if (this.cooldown > 0) {
@@ -342,17 +394,12 @@ class WakeWordDetector {
 
     async runInference() {
         const { mfcc, melspec, num_frames } = this.dsp.computeFeatures(this.buffer);
-
-        // Standardize
         const mfcc_norm = this.dsp.standardize(mfcc);
         const mel_norm = this.dsp.standardize(melspec);
 
-        // Create Tensors (1, C, T)
-        // MFCC: 1 batch, 40 channels, T frames
         const tensorMFCC = new ort.Tensor('float32', mfcc_norm, [1, 40, num_frames]);
         const tensorMel = new ort.Tensor('float32', mel_norm, [1, 64, num_frames]);
 
-        // Feeds
         const feeds = {};
         feeds[this.inputNames[0]] = tensorMFCC;
         if (this.inputNames.length > 1) {
@@ -362,18 +409,42 @@ class WakeWordDetector {
         try {
             const results = await this.session.run(feeds);
             const outputName = this.session.outputNames[0];
-            const output = results[outputName].data; // Float32Array
+            const output = results[outputName].data;
 
-            // Multi-Aligned Logic (Sum prob > 0)
+            // 1. Softmax
             const probs = this.softmax(output);
 
-            // Assume Class 0 = Other. Sum(1..N) = Wake
-            let p_wake = 0;
-            for (let i = 1; i < probs.length; i++) p_wake += probs[i];
+            // 2. Prob History (Moving Average)
+            this.probHistory.push(probs);
+            if (this.probHistory.length > 3) this.probHistory.shift();
 
-            if (p_wake > this.confidenceThreshold) {
-                this.triggerDetection(p_wake);
-                this.cooldown = 10; // ~1-2 seconds cooldown
+            // Calculate Average Prob
+            // probs is [4] (Noise, Center, Start, End)
+            // We need avg of index 1 (Center/Seven)
+            let avgProbCenter = 0;
+            for (let p of this.probHistory) avgProbCenter += p[1];
+            avgProbCenter /= this.probHistory.length;
+
+            // if (avgProbCenter > 0.1) console.log(`Prob: ${probs[1].toFixed(2)} | Avg: ${avgProbCenter.toFixed(2)}`);
+
+            // 3. Trigger Logic
+            if (!this.isTriggered) {
+                if (avgProbCenter >= this.confidenceThreshold) {
+                    console.log("⚡ DETECTED! Waiting verify...");
+                    this.isTriggered = true;
+                    this.postTriggerCount = 0;
+                }
+            } else {
+                this.postTriggerCount++;
+                if (this.postTriggerCount >= 1) {
+                    this.triggerDetection(avgProbCenter);
+
+                    // Reset
+                    this.buffer = new Float32Array(16000); // Clear audio buffer
+                    this.probHistory = [];
+                    this.isTriggered = false;
+                    this.cooldown = 10;
+                }
             }
 
         } catch (e) {
