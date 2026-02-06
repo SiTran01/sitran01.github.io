@@ -223,12 +223,19 @@ class WakeWordDetector {
 
             console.log("Loading model...");
 
-            // Force CPU/WASM specifically
+            // CRITICAL FIX FOR GITHUB PAGES:
+            // 1. Disable Multi-threading (No SharedArrayBuffer support on GH Pages)
             ort.env.wasm.numThreads = 1;
-            ort.env.wasm.simd = false;
 
+            // 2. ENABLE SIMD (by not disabling it). 
+            // INT8 Quantized models often require SIMD instructions.
+            // Disabling SIMD can cause the WASM backend to crash (Error 8851536).
+            // ort.env.wasm.simd = true; // (Default is true)
+
+            // Force WASM backend
             const options = {
                 executionProviders: ['wasm'],
+                graphOptimizationLevel: 'all'
             };
 
             this.session = await ort.InferenceSession.create(this.modelPath, options);
@@ -239,9 +246,16 @@ class WakeWordDetector {
             this.setupUI();
         } catch (e) {
             console.error("Failed to load model", e);
-            const msg = e instanceof Error ? e.message : String(e);
-            document.querySelector('.ai-status').innerText = "Err: " + msg;
-            alert("Model Load Failed: " + msg);
+            let msg = e.message || String(e);
+
+            // Append stack trace for better debugging
+            if (e.stack) {
+                msg += "\n\nStack:\n" + e.stack;
+            }
+
+            document.querySelector('.ai-status').innerText = "FATAL ERROR";
+            // Show full details in alert
+            alert("⚠️ MODEL FAILURE ⚠️\n\n" + msg);
         }
     }
 
