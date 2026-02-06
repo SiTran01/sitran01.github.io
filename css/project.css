@@ -687,7 +687,7 @@
             100% calc(100% - 12px), calc(100% - 12px) 100%,
             0 100%, 0 12px);
 
-    transition: all 0.3s ease;
+    transition: all 0.6s ease;
     position: relative;
     overflow: hidden;
 }
@@ -695,7 +695,7 @@
 /* Adjust arrow icon */
 .btn-back i {
     font-size: 0.8rem;
-    transition: transform 0.3s;
+    transition: transform 0.6s;
 }
 
 /* --- HOVER EFFECT --- */
@@ -729,5 +729,5 @@
 .btn-back:hover::before {
     left: 200%;
     /* Dash past button */
-    transition: 0.5s;
+    transition: 0.8s;
 }
