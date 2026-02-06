@@ -320,6 +320,14 @@ class WakeWordDetector {
                     if (this.isListening) return;
                     console.log("📝 Showing message 3...");
                     if (status) status.innerText = "Just say 'Seven' and state your request!";
+
+                    // Auto-hide popup after 3 seconds
+                    setTimeout(() => {
+                        if (this.isListening) return; // Don't hide if user is interacting
+                        console.log("🔒 Auto-hiding greeting popup...");
+                        if (popup) popup.classList.remove('active');
+                    }, 3000);
+
                 }, 3000);
             }, 3000);
         }, 5000);
