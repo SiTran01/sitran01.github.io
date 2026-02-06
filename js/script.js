@@ -116,8 +116,9 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // ==========================================
-    // 3. VIRTUAL ASSISTANT LOGIC
+    // 3. VIRTUAL ASSISTANT LOGIC (HANDLED BY WAKEWORD.JS)
     // ==========================================
+    /* 
     const aiTrigger = document.getElementById('ai-trigger');
     const aiPopup = document.getElementById('ai-popup');
     const closePopup = document.getElementById('close-popup');
@@ -143,6 +144,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
+    */
 
     // REMOVED 3D TILT MOUSEMOVE HERE TO AVOID CONFLICT
 });
