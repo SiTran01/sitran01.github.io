@@ -326,7 +326,7 @@ class WakeWordDetector {
                         if (this.isListening) return; // Don't hide if user is interacting
                         console.log("🔒 Auto-hiding greeting popup...");
                         if (popup) popup.classList.remove('active');
-                    }, 3000);
+                    }, 4000);
 
                 }, 3000);
             }, 3000);
@@ -334,10 +334,31 @@ class WakeWordDetector {
     }
 
     setupUI() {
-        // Toggle listening on click
-        document.getElementById('ai-trigger').addEventListener('click', () => {
+        const trigger = document.getElementById('ai-trigger');
+        const popup = document.querySelector('.assistant-popup');
+
+        // 1. Toggle Button
+        trigger.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent document listener from firing
             if (!this.isListening) this.startListening();
             else this.stopListening();
+        });
+
+        // 2. Click Outside -> Close Popup & Stop Mic
+        document.addEventListener('click', (e) => {
+            // Check if click is inside the popup or the trigger bubble
+            const isInside = e.target.closest('.assistant-popup') || e.target.closest('#ai-trigger');
+
+            if (!isInside) {
+                // Click is outside
+                const isPopupActive = popup && popup.classList.contains('active');
+
+                if (this.isListening || isPopupActive) {
+                    console.log("Click outside detected. Stopping AI & Closing...");
+                    this.stopListening();
+                    if (popup) popup.classList.remove('active');
+                }
+            }
         });
     }
 
