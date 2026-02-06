@@ -214,24 +214,23 @@ class WakeWordDetector {
         }
 
         try {
-            // Enable Debugging
-            ort.env.debug = true;
-            ort.env.logLevel = 'verbose';
+            console.log("Checking model path:", this.modelPath);
+            const response = await fetch(this.modelPath);
+            if (!response.ok) {
+                throw new Error(`Model file not found! Status: ${response.status} ${response.statusText}`);
+            }
+            console.log("Model file found, size:", response.headers.get('content-length'));
 
-            // Configure WASM to be safe
+            console.log("Loading model...");
+
+            // Force CPU/WASM specifically
             ort.env.wasm.numThreads = 1;
             ort.env.wasm.simd = false;
-            ort.env.wasm.proxy = false; // Disable proxy to debug main thread issues
-
-            // Allow auto-discovery of .wasm files since we load ort.min.js from CDN
-            // (It automatically looks in the same directory as the script)
 
             const options = {
-                executionProviders: ['wasm'], // Force WASM (CPU)
-                graphOptimizationLevel: 'all'
+                executionProviders: ['wasm'],
             };
 
-            console.log("Loading model from:", this.modelPath);
             this.session = await ort.InferenceSession.create(this.modelPath, options);
             this.inputNames = this.session.inputNames;
 
