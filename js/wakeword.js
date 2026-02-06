@@ -93,9 +93,24 @@ class DSP {
 
     computeFeatures(audioBuffer) {
         // audioBuffer: Float32Array of 16000 samples
+        // PyTorch (torchaudio) uses center=True by default, which pads the signal.
+        // To verify: 101 frames * 160 hop = 16160 coverage?
+        // We need to pad the input to get 101 frames.
+        // Current: 16000 samples -> (16000 - 400) / 160 + 1 = 98.5 -> 98 frames (Got 98)
+        // Expected: 101 frames.
+
+        // Pad 200 zeros on left and 200 on right (Simulate center padding roughly) ?
+        // Or just pad right to ensure we get enough frames.
+        // Let's verify torchaudio.transforms.MFCC/MelSpectrogram defaults.
+        // Usually center=True pads n_fft // 2 on both sides. 400 // 2 = 200.
+        // So 200 left, 200 right. Total 16000 + 400 = 16400.
+
+        const paddedBuffer = new Float32Array(16400);
+        paddedBuffer.set(audioBuffer, 200);
+
         const n_fft = 400;
         const hop_length = 160;
-        const num_frames = Math.floor((audioBuffer.length - n_fft) / hop_length) + 1;
+        const num_frames = 101; // Force 101 frames mismatch fix
 
         // Prepare outputs
         // MFCC: [1, 40, num_frames] -> Transpose -> [1, num_frames, 40] depends on model
