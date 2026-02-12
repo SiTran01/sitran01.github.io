@@ -1,46 +1,24 @@
 [
     {
-        "id": "exp-1",
+        "id": "exp-hcl",
         "role": "Embedded Software Intern",
-        "company": "FPT Software",
-        "period": "06/2024 - Present",
+        "company": "HCLTECH VIETNAM",
+        "period": "10/2025 - 02/2026",
         "description": [
-            "Developed firmware for STM32F4/F1 microcontrollers.",
-            "Optimized MCAL communication drivers for CAN, I2C, SPI.",
-            "Participated in automotive ECU emulation and ABS braking system projects."
+            "Developed STM32F4 Bare-metal drivers (GPIO, UART, SPI) using direct registers (No HAL).",
+            "Built a Proof-Of-Concept (POC) system to validate driver stability & hardware control logic.",
+            "Participated in technical presentation training & professional English workshops."
         ]
     },
     {
-        "id": "exp-2",
-        "role": "Student Scientific Researcher",
-        "company": "Ho Chi Minh City University of Technology",
-        "period": "01/2024 - 05/2024",
+        "id": "exp-ww",
+        "role": "Embedded AI Engineer",
+        "company": "Personal Research",
+        "period": "10/2024 - 01/2025",
         "description": [
-            "Built a self-balancing robot model.",
-            "Applied PID algorithms and Kalman filters for IMU signal processing.",
-            "Designed a 4-layer PCB to reduce motor noise."
-        ]
-    },
-    {
-        "id": "exp-3",
-        "role": "IoT Intern",
-        "company": "Viettel High Tech",
-        "period": "06/2023 - 12/2023",
-        "description": [
-            "Programmed NB-IoT modules and MQTT protocol on ESP32 platform.",
-            "Built an energy monitoring dashboard using Node-RED.",
-            "Optimized power consumption for smart wearable devices."
-        ]
-    },
-    {
-        "id": "exp-4",
-        "role": "Technical Collaborator",
-        "company": "Robotute Club",
-        "period": "01/2023 - 05/2023",
-        "description": [
-            "Mentored new members on basic C/C++ programming.",
-            "Designed line-following robot chassis using SolidWorks.",
-            "Organized workshops on Arduino and sensors."
+            "Developed hybrid CNN-BiLSTM Wake Word engine using Gated Fusion architecture.",
+            "Applied INT8 Quantization (293KB) achieving 7.47ms latency on Raspberry Pi 5.",
+            "Implemented Multi-aligned strategy (Start-Center-End) to eliminate false triggers (>95% F1-score)."
         ]
     }
 ]

@@ -1,12 +1,27 @@
 [
     {
-        "id": "ecu-simpson",
-        "title": "Automotive ECU Simpson",
-        "date": "2025-02-15",
-        "displayDate": "FEB 2025",
-        "description": "Real-time ECU simulator using FreeRTOS & Bare-metal drivers (MCAL) for CAN/I2C.",
+        "id": "wake-word",
+        "title": "Wake Word Detection",
+        "date": "2025-01-20",
+        "displayDate": "JAN 2025",
+        "description": "Hybrid CNN-BiLSTM engine with INT8 Quantization (293KB) on Raspberry Pi 5. Achieved 7.47ms latency and >95% F1-score.",
         "tags": [
-            "STM32",
+            "Python",
+            "ONNX",
+            "RPi 5"
+        ],
+        "category": "ai",
+        "image": "images/cc.png",
+        "link": "#"
+    },
+    {
+        "id": "ecu-sim",
+        "title": "Automotive ECU Simulator",
+        "date": "2024-12-15",
+        "displayDate": "DEC 2024",
+        "description": "Real-time ECU-Dashboard simulator on STM32F4 using FreeRTOS. Developed optimized Bare-metal drivers (MCAL) for CAN 2.0 & I2C.",
+        "tags": [
+            "C",
             "FreeRTOS",
             "CAN"
         ],
@@ -15,26 +30,11 @@
         "link": "#"
     },
     {
-        "id": "wake-word",
-        "title": "Wake Word Detection",
-        "date": "2025-01-20",
-        "displayDate": "JAN 2025",
-        "description": "Hybrid CNN-BiLSTM engine with INT8 Quantization on Raspberry Pi (>95% F1-score).",
-        "tags": [
-            "Python",
-            "PyTorch",
-            "RPi 5"
-        ],
-        "category": "ai",
-        "image": "images/cc.png",
-        "link": "#"
-    },
-    {
         "id": "smart-home",
-        "title": "Smart Home IoT Core",
-        "date": "2024-12-10",
-        "displayDate": "DEC 2024",
-        "description": "Smart energy management system for apartments. Uses MQTT protocol to ensure low latency (< 50ms).",
+        "title": "Smart Home IoT",
+        "date": "2023-12-10",
+        "displayDate": "DEC 2023",
+        "description": "Smart Home System using ESP32 & MQTT for real-time control via Web Dashboard.",
         "tags": [
             "ESP32",
             "MQTT",
@@ -45,30 +45,15 @@
         "link": "#"
     },
     {
-        "id": "altium-power",
-        "title": "Altium Power Shield",
-        "date": "2024-08-15",
-        "displayDate": "AUG 2024",
-        "description": "High power power supply circuit design (Buck/Boost Converter). Optimized 4-layer layout to reduce EMI noise.",
+        "id": "auto-temp",
+        "title": "Auto Temp Control",
+        "date": "2023-06-20",
+        "displayDate": "JUN 2023",
+        "description": "Standalone STM32 System (HAL) using PWM & ADC to dynamically regulate fan speed based on temperature.",
         "tags": [
-            "Altium",
-            "4-Layer PCB",
-            "EMI/EMC"
-        ],
-        "category": "hardware",
-        "image": "images/cc.png",
-        "link": "#"
-    },
-    {
-        "id": "balancing-robot",
-        "title": "STM32 Balancing Robot",
-        "date": "2024-01-20",
-        "displayDate": "JAN 2024",
-        "description": "Two-wheeled self-balancing robot using MPU6050 IMU sensor. Applied Kalman filter and PID algorithm.",
-        "tags": [
-            "STM32F4",
-            "FreeRTOS",
-            "PID"
+            "STM32",
+            "HAL",
+            "PWM"
         ],
         "category": "firmware",
         "image": "images/cc.png",
