@@ -1,0 +1,134 @@
+/* --- SKILLS SECTION --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+}
+
+.skill-card {
+    padding: 25px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--card-bg);
+
+    /* Initial State: Hidden and Small */
+    opacity: 0;
+    transform: scale(0.5);
+}
+
+/* Scanline effect for skills */
+/* ::before is for HOVER only */
+.skill-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transform: skewX(-20deg);
+    transition: 0s;
+    pointer-events: none;
+    z-index: 2;
+}
+
+/* Smoother springy animation */
+.skill-card.active {
+    opacity: 1;
+    transform: scale(1);
+    /* Final state for after animation */
+    /* Use 'backwards' so 0% keyframe applies during delay (preventing flicker), but NO 'forwards' so it ends at CSS state */
+    animation: skillZoomEffect 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) backwards;
+}
+
+/* Add transition only after animation completes */
+.skill-card.loaded {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+/* ::after is for LOAD animation only */
+.skill-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+    transform: skewX(-20deg);
+    pointer-events: none;
+    z-index: 2;
+    opacity: 0;
+    /* Hidden by default */
+}
+
+.skill-card.active::after {
+    opacity: 1;
+    animation: skillLightPass 1s ease-in-out forwards;
+    animation-delay: 0.3s;
+}
+
+@keyframes skillZoomEffect {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    60% {
+        opacity: 1;
+        transform: scale(1.1);
+        /* Smooth Overshoot */
+        border-color: var(--primary);
+        box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        /* Settle back */
+        border-color: transparent;
+        box-shadow: none;
+    }
+}
+
+@keyframes skillLightPass {
+    0% {
+        left: -100%;
+    }
+
+    100% {
+        left: 200%;
+    }
+}
+
+.skill-card:hover {
+    cursor: pointer;
+    transform: translateY(-5px) scale(1.05);
+    border-color: var(--primary);
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+    background: rgba(30, 30, 45, 0.95);
+}
+
+
+
+.skill-card:hover::before {
+    left: 200%;
+    transition: 1.2s;
+}
+
+.icon-neon {
+    font-size: 2.5rem;
+    color: var(--secondary);
+    margin-bottom: 15px;
+    text-shadow: 0 0 10px var(--secondary);
+}
+
+.skill-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.skill-card p {
+    margin-top: 15px;
+}

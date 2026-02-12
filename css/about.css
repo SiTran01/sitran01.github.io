@@ -1,0 +1,40 @@
+/* --- ABOUT SECTION --- */
+.card {
+    padding: 30px;
+    line-height: 1.6;
+    text-align: center;
+    font-size: 1.2rem;
+
+    /* Initial State */
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.card.active {
+    opacity: 1;
+    transform: scale(1);
+    animation: aboutZoomEffect 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) backwards;
+}
+
+.card.loaded {
+    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+}
+
+@keyframes aboutZoomEffect {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.card:hover {
+    transform: scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
+    background: rgba(30, 30, 45, 0.95);
+}

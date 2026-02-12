@@ -10,6 +10,12 @@
         href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Poppins:wght@300;500;700&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/about.css">
+    <link rel="stylesheet" href="css/skills.css">
+    <link rel="stylesheet" href="css/experience.css">
+    <link rel="stylesheet" href="css/home-projects.css">
+    <link rel="stylesheet" href="css/contact.css">
 </head>
 
 <body>
@@ -22,6 +28,7 @@
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
@@ -80,42 +87,17 @@
         </div>
     </section>
 
+    <section id="experience" class="container experience-section">
+        <h2 class="section-title">Work Experience</h2>
+        <div class="experience-timeline">
+            <!-- Loaded via JS -->
+        </div>
+    </section>
+
     <section id="projects" class="container">
         <h2 class="section-title">Featured Projects</h2>
         <div class="projects-grid">
-            <div class="project-card glass">
-                <div class="project-thumb">
-                    <img src="images/cc.png" alt="ECU Project">
-                </div>
-                <div class="project-info">
-                    <h3>Automotive ECU Simpson</h3>
-                    <p class="tech-stack"><span>STM32</span> <span>FreeRTOS</span> <span>CAN</span></p>
-                    <p>Real-time ECU simulator using FreeRTOS & Bare-metal drivers (MCAL) for CAN/I2C.</p>
-                    <a href="pages/projects.html" class="btn-sm">View Details <i class="fas fa-info-circle"></i></a>
-                </div>
-            </div>
-            <div class="project-card glass">
-                <div class="project-thumb">
-                    <img src="images/cc.png" alt="Wake Word">
-                </div>
-                <div class="project-info">
-                    <h3>Wake Word Detection</h3>
-                    <p class="tech-stack"><span>Python</span> <span>PyTorch</span> <span>RPi 5</span></p>
-                    <p>Hybrid CNN-BiLSTM engine with INT8 Quantization on Raspberry Pi (>95% F1-score).</p>
-                    <a href="pages/projects.html" class="btn-sm">View Details <i class="fas fa-info-circle"></i></a>
-                </div>
-            </div>
-            <div class="project-card glass">
-                <div class="project-thumb">
-                    <img src="images/cc.png" alt="Smart Home">
-                </div>
-                <div class="project-info">
-                    <h3>Smart Home System</h3>
-                    <p class="tech-stack"><span>ESP32</span> <span>MQTT</span> <span>IoT</span></p>
-                    <p>IoT system for real-time control via Internet using high-performance MQTT.</p>
-                    <a href="pages/projects.html" class="btn-sm">View Details <i class="fas fa-info-circle"></i></a>
-                </div>
-            </div>
+            <!-- Projects will be loaded dynamically -->
         </div>
         <div style="text-align: center; margin-top: 40px;">
             <a href="pages/projects.html" class="btn btn-primary" style="padding: 12px 40px; font-size: 1.1rem;">
@@ -171,6 +153,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/ort.min.js"></script>
     <script src="js/wakeword.js"></script>
+    <script src="js/project-loader.js"></script>
+    <script src="js/experience-loader.js"></script>
     <script src="js/script.js"></script>
 </body>
 

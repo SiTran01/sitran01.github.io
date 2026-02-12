@@ -37,106 +37,7 @@
 
     <section class="container">
         <div class="timeline-wrapper">
-            <div class="timeline-line"></div>
-
-            <div class="timeline-item" data-category="iot">
-                <div class="timeline-marker">
-                    <span class="timeline-date">DEC 2024</span>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-content glass-panel">
-                    <div class="project-visual">
-                        <img src="../images/cc.png" alt="Project Image">
-                        <div class="visual-overlay"></div>
-                    </div>
-                    <div class="project-details">
-                        <h2 class="project-title">Smart Home <span class="highlight">IoT Core</span></h2>
-                        <div class="tech-tags">
-                            <span>ESP32</span><span>MQTT</span><span>Node-RED</span><span>App UI</span>
-                        </div>
-                        <p class="description">
-                            Smart energy management system for apartments. Uses MQTT protocol to ensure low latency (<
-                                50ms). Integrated voice assistant and real-time control dashboard. </p>
-                                <div class="stats-row">
-                                    <div class="stat">
-                                        <i class="fas fa-code-branch"></i> <span>v2.0.1</span>
-                                    </div>
-                                    <div class="stat">
-                                        <i class="fas fa-clock"></i> <span>3 Months</span>
-                                    </div>
-                                </div>
-                                <a href="#" class="btn-glitch">VIEW SYSTEM DETAILS</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item" data-category="hardware">
-                <div class="timeline-marker">
-                    <span class="timeline-date">AUG 2024</span>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-content glass-panel">
-                    <div class="project-visual">
-                        <img src="../images/cc.png" alt="Project Image">
-                        <div class="visual-overlay"></div>
-                    </div>
-                    <div class="project-details">
-                        <h2 class="project-title">Altium <span class="highlight">Power Shield</span></h2>
-                        <div class="tech-tags">
-                            <span>Altium</span><span>4-Layer PCB</span><span>EMI/EMC</span>
-                        </div>
-                        <p class="description">
-                            High power power supply circuit design (Buck/Boost Converter). Optimized 4-layer layout to
-                            reduce EMI noise. Real-world testing achieved 92% efficiency at rated load.
-                        </p>
-                        <div class="stats-row">
-                            <div class="stat">
-                                <i class="fas fa-microchip"></i> <span>Hardware</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-check-circle"></i> <span>Completed</span>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-glitch">VIEW SCHEMATICS</a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="timeline-item" data-category="firmware">
-                <div class="timeline-marker">
-                    <span class="timeline-date">JAN 2024</span>
-                    <div class="timeline-dot"></div>
-                </div>
-
-                <div class="timeline-content glass-panel">
-                    <div class="project-visual">
-                        <img src="../images/cc.png" alt="Project Image">
-                        <div class="visual-overlay"></div>
-                    </div>
-                    <div class="project-details">
-                        <h2 class="project-title">STM32 <span class="highlight">Balancing Robot</span></h2>
-                        <div class="tech-tags">
-                            <span>STM32F4</span><span>FreeRTOS</span><span>PID</span><span>Kalman</span>
-                        </div>
-                        <p class="description">
-                            Two-wheeled self-balancing robot using MPU6050 IMU sensor. Applied Kalman filter for signal
-                            noise reduction and dual PID algorithm (Position & Velocity) for absolute balance.
-                        </p>
-                        <div class="stats-row">
-                            <div class="stat">
-                                <i class="fas fa-robot"></i> <span>Robotics</span>
-                            </div>
-                            <div class="stat">
-                                <i class="fas fa-file-code"></i> <span>C++</span>
-                            </div>
-                        </div>
-                        <a href="#" class="btn-glitch">VIEW SOURCE CODE</a>
-                    </div>
-                </div>
-            </div>
-
+            <!-- Projects loaded by JS -->
         </div>
     </section>
 
@@ -144,36 +45,33 @@
         <p style="text-align: center; color: #666; margin-top: 50px;">END OF LINE.</p>
     </footer>
 
-    <script>
-        // MOUSE SCROLL EVENT (INTERSECTION OBSERVER)
-        document.addEventListener("DOMContentLoaded", function () {
+    <div class="assistant-wrapper">
+        <div class="assistant-popup" id="ai-popup">
+            <div class="popup-header">
+                <span>AI Assistant</span>
+                <i class="fas fa-times" id="close-popup"></i>
+            </div>
+            <div class="popup-body">
+                <div class="voice-wave">
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                    <div class="bar"></div>
+                </div>
+                <p class="ai-status">Listening...</p>
+            </div>
+        </div>
 
-            // 1. Select all timeline blocks
-            const items = document.querySelectorAll('.timeline-item');
+        <div class="assistant-bubble" id="ai-trigger">
+            <i class="fas fa-microphone-lines"></i>
+            <div class="pulse-ring"></div>
+        </div>
+    </div>
 
-            // 2. Setup Radar (Observer)
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    // If block becomes visible in view
-                    if (entry.isIntersecting) {
-                        // Add class 'active' to run CSS animation
-                        entry.target.classList.add('active');
-
-                        // (Optional) If you want the effect to run again when scrolling up then down, remove line below.
-                        // If you want it to run only once, keep line below:
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, {
-                threshold: 0.15 // Activates when 15% of block is visible
-            });
-
-            // 3. Attach Radar to each block
-            items.forEach(item => {
-                observer.observe(item);
-            });
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.18.0/dist/ort.min.js"></script>
+    <script src="../js/wakeword.js"></script>
+    <script src="../js/project-loader.js"></script>
 </body>
 
 </html>

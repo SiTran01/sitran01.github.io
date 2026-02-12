@@ -1,8 +1,19 @@
+// Resolve paths based on script location
+const scriptUrl = new URL(document.currentScript.src);
+// Assuming structure: /js/wakeword.js -> root is ../
+const projectRoot = new URL('../', scriptUrl).href;
+
 class WakeWordDetector {
     constructor() {
-        this.modelPath = './models/multi-aligned_int8.onnx';
-        this.worker = new Worker('js/worker.js');
-        this.worker = new Worker('js/worker.js');
+        // Construct absolute paths relative to project root
+        // This works regardless of page location
+        this.modelPath = new URL('models/multi-aligned_int8.onnx', projectRoot).href;
+        const workerPath = new URL('js/worker.js', projectRoot).href;
+
+        console.log("Root:", projectRoot);
+        console.log("Worker Path:", workerPath);
+
+        this.worker = new Worker(workerPath);
         this.isListening = false;
         this.isGreetingRunning = false;
 

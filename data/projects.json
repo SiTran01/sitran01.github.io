@@ -1,0 +1,77 @@
+[
+    {
+        "id": "ecu-simpson",
+        "title": "Automotive ECU Simpson",
+        "date": "2025-02-15",
+        "displayDate": "FEB 2025",
+        "description": "Real-time ECU simulator using FreeRTOS & Bare-metal drivers (MCAL) for CAN/I2C.",
+        "tags": [
+            "STM32",
+            "FreeRTOS",
+            "CAN"
+        ],
+        "category": "firmware",
+        "image": "images/cc.png",
+        "link": "#"
+    },
+    {
+        "id": "wake-word",
+        "title": "Wake Word Detection",
+        "date": "2025-01-20",
+        "displayDate": "JAN 2025",
+        "description": "Hybrid CNN-BiLSTM engine with INT8 Quantization on Raspberry Pi (>95% F1-score).",
+        "tags": [
+            "Python",
+            "PyTorch",
+            "RPi 5"
+        ],
+        "category": "ai",
+        "image": "images/cc.png",
+        "link": "#"
+    },
+    {
+        "id": "smart-home",
+        "title": "Smart Home IoT Core",
+        "date": "2024-12-10",
+        "displayDate": "DEC 2024",
+        "description": "Smart energy management system for apartments. Uses MQTT protocol to ensure low latency (< 50ms).",
+        "tags": [
+            "ESP32",
+            "MQTT",
+            "IoT"
+        ],
+        "category": "iot",
+        "image": "images/cc.png",
+        "link": "#"
+    },
+    {
+        "id": "altium-power",
+        "title": "Altium Power Shield",
+        "date": "2024-08-15",
+        "displayDate": "AUG 2024",
+        "description": "High power power supply circuit design (Buck/Boost Converter). Optimized 4-layer layout to reduce EMI noise.",
+        "tags": [
+            "Altium",
+            "4-Layer PCB",
+            "EMI/EMC"
+        ],
+        "category": "hardware",
+        "image": "images/cc.png",
+        "link": "#"
+    },
+    {
+        "id": "balancing-robot",
+        "title": "STM32 Balancing Robot",
+        "date": "2024-01-20",
+        "displayDate": "JAN 2024",
+        "description": "Two-wheeled self-balancing robot using MPU6050 IMU sensor. Applied Kalman filter and PID algorithm.",
+        "tags": [
+            "STM32F4",
+            "FreeRTOS",
+            "PID"
+        ],
+        "category": "firmware",
+        "image": "images/cc.png",
+        "link": "#"
+    }
+]

@@ -1,0 +1,321 @@
+/* --- EXPERIENCE (Advanced Circuit Timeline) --- */
+.experience-section {
+    position: relative;
+    padding: 100px 0;
+    overflow: hidden;
+    /* Prevent overflow from animations */
+}
+
+.experience-timeline {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* Central Neon Trunk Line */
+.experience-timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(to bottom, #bc13fe, #00f3ff, #bc13fe);
+    box-shadow: 0 0 15px rgba(188, 19, 254, 0.6);
+    transform: translateX(-50%);
+    border-radius: 2px;
+    z-index: 0;
+}
+
+/* Base Item */
+.exp-item {
+    position: relative;
+    margin-bottom: 80px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.exp-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Odd items (Left) */
+.exp-item.left {
+    justify-content: flex-start;
+    padding-right: 50%;
+}
+
+.exp-item.right {
+    justify-content: flex-end;
+    padding-left: 50%;
+}
+
+/* Dot on Central Line */
+.exp-dot {
+    position: absolute;
+    left: 50%;
+    top: 25px;
+    width: 20px;
+    height: 20px;
+    background: #000;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    transform: translateX(-50%);
+    z-index: 5;
+    box-shadow: 0 0 15px #fff;
+    transition: 0.3s;
+}
+
+.exp-item:hover .exp-dot {
+    background: var(--primary);
+    border-color: var(--secondary);
+    box-shadow: 0 0 25px var(--primary);
+    transform: translateX(-50%) scale(1.4);
+}
+
+/* Horizontal Connector Line */
+.exp-line-connector {
+    position: absolute;
+    top: 35px;
+    height: 2px;
+    width: 0;
+    /* Start width 0 for animation */
+    background: var(--secondary);
+    box-shadow: 0 0 8px var(--secondary);
+    /* SLOWER TRANSITION HERE */
+    transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 1;
+}
+
+.exp-item.active .exp-line-connector {
+    width: 40px;
+    /* Reduced separate distance */
+}
+
+/* Left side connector: Anchors to Center (Right: 50%) and grows Left */
+.exp-item.left .exp-line-connector {
+    right: 50%;
+    left: auto;
+    transform-origin: right center;
+}
+
+/* Right side connector: Anchors to Center (Left: 50%) and grows Right */
+.exp-item.right .exp-line-connector {
+    left: 50%;
+    right: auto;
+    transform-origin: left center;
+}
+
+.exp-item:hover .exp-line-connector {
+    width: 50px;
+    /* Reduced further to keep tight */
+    background: var(--primary);
+    box-shadow: 0 0 12px var(--primary);
+}
+
+/* Content Box */
+.exp-content {
+    background: rgba(15, 15, 20, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Cyber border */
+    backdrop-filter: blur(12px);
+    padding: 30px;
+    border-radius: 12px;
+    width: 85%;
+    max-width: 480px;
+    position: relative;
+    transition: 0.4s;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    margin: 0 30px;
+    /* Space from connector */
+}
+
+/* Specific borders for sides */
+.exp-item.left .exp-content {
+    text-align: right;
+    border-right: 3px solid var(--secondary);
+}
+
+.exp-item.right .exp-content {
+    text-align: left;
+    border-left: 3px solid var(--secondary);
+}
+
+
+/* Transition for all interactive parts */
+.exp-item,
+.exp-content,
+.exp-line-connector {
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Hover Effect: Gentle Push OUT and Zoom IN */
+.exp-item.left:hover .exp-content {
+    transform: translateX(-20px) scale(1.05);
+    /* Push Left less */
+    background: rgba(30, 30, 45, 0.95);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(0, 243, 255, 0.1);
+}
+
+.exp-item.right:hover .exp-content {
+    transform: translateX(20px) scale(1.05);
+    /* Push Right less */
+    background: rgba(30, 30, 45, 0.95);
+    border-color: var(--primary);
+    box-shadow: 0 15px 40px rgba(0, 243, 255, 0.1);
+}
+
+/* Typography */
+.exp-date {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: rgba(188, 19, 254, 0.15);
+    color: var(--secondary);
+    font-weight: bold;
+    font-family: var(--font-head);
+    font-size: 0.85rem;
+    margin-bottom: 20px;
+    border: 1px solid rgba(188, 19, 254, 0.3);
+    box-shadow: 0 0 10px rgba(188, 19, 254, 0.1);
+    transition: 0.4s;
+}
+
+.exp-item:hover .exp-date {
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 20px var(--primary);
+    border-color: var(--primary);
+    transform: scale(1.1);
+}
+
+.exp-content h3 {
+    color: #fff;
+    font-size: 1.6rem;
+    margin-bottom: 6px;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.exp-content h4 {
+    color: #aaa;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 400;
+    font-style: italic;
+    letter-spacing: 0.5px;
+}
+
+.exp-content ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.exp-content ul li {
+    font-size: 0.95rem;
+    color: #d0d0d0;
+    margin-bottom: 10px;
+    line-height: 1.6;
+    position: relative;
+}
+
+/* Bullet points */
+.exp-item.left .exp-content ul li {
+    padding-right: 20px;
+}
+
+.exp-item.right .exp-content ul li {
+    padding-left: 20px;
+}
+
+.exp-item.left .exp-content ul li::after {
+    content: '▹';
+    position: absolute;
+    right: 0;
+    color: var(--secondary);
+    font-size: 1.2rem;
+    line-height: 1rem;
+    top: 3px;
+}
+
+.exp-item.right .exp-content ul li::before {
+    content: '▹';
+    position: absolute;
+    left: 0;
+    color: var(--secondary);
+    font-size: 1.2rem;
+    line-height: 1rem;
+    top: 3px;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+    .experience-timeline::before {
+        left: 30px;
+        /* Move trunk to left on mobile */
+        transform: none;
+    }
+
+    .exp-item {
+        justify-content: flex-start !important;
+        padding: 0 !important;
+        padding-left: 70px !important;
+        margin-bottom: 50px;
+    }
+
+    .exp-dot {
+        left: 30px;
+        transform: translateX(-50%);
+    }
+
+    /* Override connector for mobile */
+    .exp-line-connector {
+        left: 30px !important;
+        width: 30px !important;
+        /* Fixed width on mobile */
+        right: auto !important;
+    }
+
+    .exp-item.active .exp-line-connector {
+        width: 30px;
+    }
+
+    .exp-content {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 !important;
+        text-align: left !important;
+
+        /* Reset borders to match left-side style */
+        border-right: none !important;
+        border-left: 3px solid var(--secondary) !important;
+    }
+
+    /* Reset list styles for mobile */
+    .exp-item.left .exp-content ul li,
+    .exp-item.right .exp-content ul li {
+        padding-right: 0;
+        padding-left: 20px;
+    }
+
+    .exp-item.left .exp-content ul li::after {
+        content: none;
+    }
+
+    .exp-item.left .exp-content ul li::before,
+    .exp-item.right .exp-content ul li::before {
+        content: '▹';
+        position: absolute;
+        left: 0;
+        color: var(--secondary);
+        font-size: 1.2rem;
+        top: 3px;
+    }
+}
